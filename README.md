@@ -52,16 +52,10 @@ Commands:
 # Server file structure
 
 
-``<AppFolder>
-
-	\\ remotes.txt (each line contains one remote - remoteId as long value in string + remote name )
-	
-	\\ remoteId as long value in string folder
-	
-		\\ regions.bin file
-
-		\\ image.jpg
-
-
-		\\ <commandId>.bin - commandId - long value as string
+    <AppFolder>
+        \remotes.txt (each line contains one remote - remoteId as long value in string + remote name )
+        \remoteId as long value in string folder
+            \regions.bin file
+            \image.jpg
+            \<commandId>.bin - commandId - long value as string
 		
