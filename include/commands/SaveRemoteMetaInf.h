@@ -10,17 +10,19 @@
 *
 ********************************************************************************************************************* */
 
-#ifndef EXECUTORCALLBACK_H_
-#define EXECUTORCALLBACK_H_
+#ifndef SAVEREMOTE_H_
+#define SAVEREMOTE_H_
 
-class ExecutorCallback{
+#include "Command.h"
 
+class SaveRemoteMetaInf: public Command {
 public:
-	virtual ~ExecutorCallback(){}
+	SaveRemoteMetaInf();
+	virtual ~SaveRemoteMetaInf();
+	virtual CommandsId getCommandId(){return SAVE_REMOTE_METAINF;};
 
-	virtual void close() = 0;
-
+protected:
+	virtual ErrorCode execute(TRANSPORTER_HANDLER streamHandler);
 };
 
-
-#endif /* EXECUTORCALLBACK_H_ */
+#endif /* SAVEREMOTE_H_ */

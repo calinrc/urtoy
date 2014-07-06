@@ -10,17 +10,17 @@
 *
 ********************************************************************************************************************* */
 
-#ifndef EXECUTORCALLBACK_H_
-#define EXECUTORCALLBACK_H_
+#include "commands/NewRemote.h"
 
-class ExecutorCallback{
+NewRemote::NewRemote() {
 
-public:
-	virtual ~ExecutorCallback(){}
+}
 
-	virtual void close() = 0;
+NewRemote::~NewRemote() {
+}
 
-};
+ErrorCode NewRemote::execute(TRANSPORTER_HANDLER streamHandler) {
+	return EC_NOT_IMPLEMENTED;
+}
 
 
-#endif /* EXECUTORCALLBACK_H_ */

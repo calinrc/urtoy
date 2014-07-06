@@ -10,17 +10,17 @@
 *
 ********************************************************************************************************************* */
 
-#ifndef EXECUTORCALLBACK_H_
-#define EXECUTORCALLBACK_H_
+#include "commands/Logout.h"
 
-class ExecutorCallback{
+Logout::Logout() {
 
-public:
-	virtual ~ExecutorCallback(){}
+}
 
-	virtual void close() = 0;
-
-};
+Logout::~Logout() {
+}
 
 
-#endif /* EXECUTORCALLBACK_H_ */
+ErrorCode Logout::execute(TRANSPORTER_HANDLER streamHandler){
+ return EC_NOT_IMPLEMENTED;
+}
+

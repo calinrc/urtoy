@@ -10,17 +10,35 @@
 *
 ********************************************************************************************************************* */
 
-#ifndef EXECUTORCALLBACK_H_
-#define EXECUTORCALLBACK_H_
+#ifndef SOCKETEXECUTOR_H_
+#define SOCKETEXECUTOR_H_
 
-class ExecutorCallback{
+#include "InitInfo.h"
+#include <netinet/in.h>
+#include "Constants.h"
+
+
+class SocketExecutor{
 
 public:
-	virtual ~ExecutorCallback(){}
+	SocketExecutor(InitInfo& initInfo, LoginInfo& loginInfo);
+	~SocketExecutor();
 
-	virtual void close() = 0;
+	ErrorCode init();
+	ErrorCode launch();
+
+
+
+private:
+	InitInfo& m_initInfo;
+	LoginInfo m_loginInfo;
+	int m_socketHandler;
+	int m_sockfd;
+	struct sockaddr_in m_cli_addr;
+	socklen_t m_clilen;
+
 
 };
 
 
-#endif /* EXECUTORCALLBACK_H_ */
+#endif /* SOCKETEXECUTOR_H_ */

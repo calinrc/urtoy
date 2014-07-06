@@ -10,17 +10,16 @@
 *
 ********************************************************************************************************************* */
 
-#ifndef EXECUTORCALLBACK_H_
-#define EXECUTORCALLBACK_H_
+#include "commands/Login.h"
 
-class ExecutorCallback{
+Login::Login() {
 
-public:
-	virtual ~ExecutorCallback(){}
+}
 
-	virtual void close() = 0;
+Login::~Login() {
+}
 
-};
+ErrorCode Login::execute(TRANSPORTER_HANDLER streamHandler) {
+	return EC_NOT_IMPLEMENTED;
+}
 
-
-#endif /* EXECUTORCALLBACK_H_ */

@@ -1,5 +1,5 @@
 /*
-*    file written and maintained by Calin Cocan
+*    SendRemoteCommand.h written and maintained by Calin Cocan
 *    Created on: Feb 17, 2014
 *
 * This work is free: you can redistribute it and/or modify it under the terms of Apache License Version 2.0
@@ -10,17 +10,19 @@
 *
 ********************************************************************************************************************* */
 
-#ifndef EXECUTORCALLBACK_H_
-#define EXECUTORCALLBACK_H_
+#ifndef SENDCOMMAND_H_
+#define SENDCOMMAND_H_
 
-class ExecutorCallback{
+#include "Command.h"
 
+class SendRemoteCommand: public Command {
 public:
-	virtual ~ExecutorCallback(){}
+	SendRemoteCommand();
+	virtual ~SendRemoteCommand();
+	virtual CommandsId getCommandId(){return SEND_REOTE_COMMAND;};
 
-	virtual void close() = 0;
-
+protected:
+	virtual ErrorCode execute(TRANSPORTER_HANDLER streamHandler);
 };
 
-
-#endif /* EXECUTORCALLBACK_H_ */
+#endif /* SENDCOMMAND_H_ */

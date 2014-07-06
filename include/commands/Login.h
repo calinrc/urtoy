@@ -10,17 +10,20 @@
 *
 ********************************************************************************************************************* */
 
-#ifndef EXECUTORCALLBACK_H_
-#define EXECUTORCALLBACK_H_
+#ifndef LOGINCOMMAND_H_
+#define LOGINCOMMAND_H_
 
-class ExecutorCallback{
+#include "Command.h"
 
+class Login : public Command{
 public:
-	virtual ~ExecutorCallback(){}
+	Login();
+	virtual ~Login();
 
-	virtual void close() = 0;
+	virtual CommandsId getCommandId() {return LOGIN;};
 
+protected:
+	virtual ErrorCode execute(TRANSPORTER_HANDLER streamHandler);
 };
 
-
-#endif /* EXECUTORCALLBACK_H_ */
+#endif /* LOGINCOMMAND_H_ */

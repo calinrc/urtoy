@@ -1,28 +1,20 @@
 /*
- * command.cpp
- *
- *  Created on: Feb 21, 2014
- *      Author: abs
- */
+*    file written and maintained by Calin Cocan
+*    Created on: Feb 17, 2014
+*
+* This work is free: you can redistribute it and/or modify it under the terms of Apache License Version 2.0
+*
+* This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+* See the License for more details.
+* You should have received a copy of the License along with this program. If not, see <http://choosealicense.com/licenses/apache-2.0/ >.
+*
+********************************************************************************************************************* */
+
 
 #include "commands/Command.h"
-#include "CommandsFactory.h"
+#include "CommandsDispatcher.h"
 
 
-ErrorCode Command::execute(STREAM_HANDLER streamHandler, ExecutorCallback* callback){
-	ErrorCode errCode  = this->read(streamHandler);
-	if (errCode != EC_OK){
-		callback->close();
-		return errCode;
-	}else{
-		errCode = this->write(streamHandler);
-		if (errCode != EC_OK){
-			callback->close();
-		};
-		return errCode;
-	}
-}
-
-void Command::reg(CommandsFactory* factory){
+void Command::reg(CommandsDispatcher* factory){
 	factory->reg(this);
 }

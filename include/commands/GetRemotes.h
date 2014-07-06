@@ -10,17 +10,19 @@
 *
 ********************************************************************************************************************* */
 
-#ifndef EXECUTORCALLBACK_H_
-#define EXECUTORCALLBACK_H_
+#ifndef GETREMOTES_H_
+#define GETREMOTES_H_
 
-class ExecutorCallback{
+#include "Command.h"
 
+class GetRemotes: public Command {
 public:
-	virtual ~ExecutorCallback(){}
+	GetRemotes();
+	virtual ~GetRemotes();
+	virtual CommandsId getCommandId() {return GET_REMOTES;};
 
-	virtual void close() = 0;
-
+protected:
+	virtual ErrorCode execute(TRANSPORTER_HANDLER streamHandler);
 };
 
-
-#endif /* EXECUTORCALLBACK_H_ */
+#endif /* GETREMOTES_H_ */

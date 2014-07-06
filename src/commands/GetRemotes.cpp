@@ -10,17 +10,17 @@
 *
 ********************************************************************************************************************* */
 
-#ifndef EXECUTORCALLBACK_H_
-#define EXECUTORCALLBACK_H_
+#include "commands/GetRemotes.h"
 
-class ExecutorCallback{
+GetRemotes::GetRemotes() {
 
-public:
-	virtual ~ExecutorCallback(){}
+}
 
-	virtual void close() = 0;
+GetRemotes::~GetRemotes() {
+}
 
-};
+ErrorCode GetRemotes::execute(TRANSPORTER_HANDLER streamHandler) {
+	return EC_NOT_IMPLEMENTED;
+}
 
 
-#endif /* EXECUTORCALLBACK_H_ */

@@ -10,17 +10,19 @@
 *
 ********************************************************************************************************************* */
 
-#ifndef EXECUTORCALLBACK_H_
-#define EXECUTORCALLBACK_H_
+#ifndef CLOSECOMMAND_H_
+#define CLOSECOMMAND_H_
 
-class ExecutorCallback{
+#include "Command.h"
 
+class Logout: public Command {
 public:
-	virtual ~ExecutorCallback(){}
+	Logout();
+	virtual ~Logout();
+	virtual CommandsId getCommandId() {return LOGOUT;};
 
-	virtual void close() = 0;
-
+protected:
+	virtual ErrorCode execute(TRANSPORTER_HANDLER streamHandler);
 };
 
-
-#endif /* EXECUTORCALLBACK_H_ */
+#endif /* CLOSECOMMAND_H_ */

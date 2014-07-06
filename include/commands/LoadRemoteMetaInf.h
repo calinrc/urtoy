@@ -10,17 +10,21 @@
 *
 ********************************************************************************************************************* */
 
-#ifndef EXECUTORCALLBACK_H_
-#define EXECUTORCALLBACK_H_
+#ifndef LOADREMOTECOMMAND_H_
+#define LOADREMOTECOMMAND_H_
 
-class ExecutorCallback{
+#include "Command.h"
 
+class LoadRemoteMetaInf: public Command {
 public:
-	virtual ~ExecutorCallback(){}
+	LoadRemoteMetaInf();
+	virtual ~LoadRemoteMetaInf();
 
-	virtual void close() = 0;
+	virtual CommandsId getCommandId() {return LOAD_REMOTE_METAINF;};
+
+protected:
+	virtual ErrorCode execute(TRANSPORTER_HANDLER streamHandler);
 
 };
 
-
-#endif /* EXECUTORCALLBACK_H_ */
+#endif /* LOADREMOTECOMMAND_H_ */

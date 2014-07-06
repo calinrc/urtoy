@@ -10,17 +10,15 @@
 *
 ********************************************************************************************************************* */
 
-#ifndef EXECUTORCALLBACK_H_
-#define EXECUTORCALLBACK_H_
+#include "commands/SaveRemoteMetaInf.h"
 
-class ExecutorCallback{
+SaveRemoteMetaInf::SaveRemoteMetaInf() {
 
-public:
-	virtual ~ExecutorCallback(){}
+}
 
-	virtual void close() = 0;
+SaveRemoteMetaInf::~SaveRemoteMetaInf() {
+}
 
-};
-
-
-#endif /* EXECUTORCALLBACK_H_ */
+ErrorCode SaveRemoteMetaInf::execute(TRANSPORTER_HANDLER streamHandler) {
+	return EC_NOT_IMPLEMENTED;
+}

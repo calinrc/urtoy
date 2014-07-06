@@ -10,17 +10,27 @@
 *
 ********************************************************************************************************************* */
 
-#ifndef EXECUTORCALLBACK_H_
-#define EXECUTORCALLBACK_H_
+#ifndef TRANSPORTER_H_
+#define TRANSPORTER_H_
 
-class ExecutorCallback{
+#include "Constants.h"
+
+class Transporter {
 
 public:
-	virtual ~ExecutorCallback(){}
+	Transporter() {
+	}
+	virtual ~Transporter() {
+	}
 
-	virtual void close() = 0;
+	virtual ErrorCode init(InitInfo* initInfo) = 0;
+
+	virtual ErrorCode read(char* buff, int buffSize) = 0;
+
+	virtual ErrorCode write(char* buff, int buffSize) = 0;
+
+	virtual ErrorCode close() = 0;
 
 };
 
-
-#endif /* EXECUTORCALLBACK_H_ */
+#endif /* TRANSPORTER_H_ */
