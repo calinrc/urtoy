@@ -54,12 +54,12 @@ ErrorCode CommandsDispatcher::execute(TRANSPORTER_HANDLER streamHandler) {
 	} else if (eCode == EC_OK) {
 		CommandsId commandId = static_cast<CommandsId>(buff[0]);
 		if (commandId >= 0 && commandId < UNKNOWN_COMMAND) {
-			if (commandId != LOGIN && !m_isloggon){
+			if (commandId != LOGIN && !m_isloggon) {
 				streamHandler->close();
-			}else {
-				Command* command = this->m_commands[(CommandsId)buff[0]];
+			} else {
+				Command* command = this->m_commands[(CommandsId) buff[0]];
 				eCode = command->execute(streamHandler);
-				if (commandId == LOGIN && eCode==EC_OK){
+				if (commandId == LOGIN && eCode == EC_OK) {
 					m_isloggon = true;
 				}
 			}
