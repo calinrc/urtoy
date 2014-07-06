@@ -14,6 +14,7 @@
 #define TRANSPORTER_H_
 
 #include "Constants.h"
+class InitInfo;
 
 class Transporter {
 

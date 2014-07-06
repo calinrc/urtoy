@@ -10,7 +10,7 @@
  *
  ********************************************************************************************************************* */
 
-#include "CommandsDispatcher.h"
+#include "commands/CommandsDispatcher.h"
 #include "commands/Login.h"
 #include "commands/LoadRemoteMetaInf.h"
 #include "commands/SendRemoteCommand.h"
@@ -52,9 +52,17 @@ ErrorCode CommandsDispatcher::execute(TRANSPORTER_HANDLER streamHandler) {
 	if (eCode != EC_OK && eCode != EC_CLOSED) {
 		streamHandler->close();
 	} else if (eCode == EC_OK) {
-		if (buff[0] >= 0 && buff[0] < UNKNOWN_COMMAND) {
-			Command* command = this->m_commands[buff[0]];
-			eCode = command->execute(streamHandler);
+		CommandsId commandId = static_cast<CommandsId>(buff[0]);
+		if (commandId >= 0 && commandId < UNKNOWN_COMMAND) {
+			if (commandId != LOGIN && !m_isloggon){
+				streamHandler->close();
+			}else {
+				Command* command = this->m_commands[(CommandsId)buff[0]];
+				eCode = command->execute(streamHandler);
+				if (commandId == LOGIN && eCode==EC_OK){
+					m_isloggon = true;
+				}
+			}
 		}
 	}
 	return eCode;

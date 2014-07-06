@@ -11,6 +11,7 @@
 ********************************************************************************************************************* */
 
 #include "commands/Logout.h"
+#include "Transporter.h"
 
 Logout::Logout() {
 
@@ -21,6 +22,6 @@ Logout::~Logout() {
 
 
 ErrorCode Logout::execute(TRANSPORTER_HANDLER streamHandler){
- return EC_NOT_IMPLEMENTED;
+ return streamHandler->close();
 }
 

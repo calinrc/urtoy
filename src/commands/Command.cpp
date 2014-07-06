@@ -12,7 +12,7 @@
 
 
 #include "commands/Command.h"
-#include "CommandsDispatcher.h"
+#include "commands/CommandsDispatcher.h"
 
 
 void Command::reg(CommandsDispatcher* factory){

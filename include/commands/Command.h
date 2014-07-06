@@ -27,7 +27,6 @@ public:
 
 	virtual CommandsId getCommandId() = 0;
 
-protected:
 	virtual ErrorCode execute(TRANSPORTER_HANDLER streamHandler) = 0;
 };
 

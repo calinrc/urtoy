@@ -34,7 +34,7 @@ public :
 
 
 private:
-	CommandsDispatcher(){}
+	CommandsDispatcher():m_isloggon(false){}
 	~CommandsDispatcher();
 
 	static CommandsDispatcher* initialize();
@@ -42,6 +42,7 @@ private:
 	static CommandsDispatcher* s_instance;
 
 	map<CommandsId, Command*> m_commands;
+	bool m_isloggon;
 
 
 
