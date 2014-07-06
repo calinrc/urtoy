@@ -20,15 +20,14 @@
 class SocketExecutor {
 
 public:
-	SocketExecutor(InitInfo& initInfo, LoginInfo& loginInfo);
+	SocketExecutor(InitInfo* initInfo);
 	~SocketExecutor();
 
 	ErrorCode init();
 	ErrorCode launch();
 
 private:
-	InitInfo& m_initInfo;
-	LoginInfo m_loginInfo;
+	InitInfo* m_initInfo;
 	int m_socketHandler;
 	int m_sockfd;
 	struct sockaddr_in m_cli_addr;

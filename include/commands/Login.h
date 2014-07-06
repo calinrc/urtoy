@@ -23,7 +23,6 @@ public:
 	virtual CommandsId getCommandId() {
 		return LOGIN;
 	}
-	;
 
 protected:
 	virtual ErrorCode execute(TRANSPORTER_HANDLER streamHandler);

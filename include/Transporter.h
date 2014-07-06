@@ -28,7 +28,7 @@ public:
 
 	virtual ErrorCode read(char* buff, int buffSize) = 0;
 
-	virtual ErrorCode write(char* buff, int buffSize) = 0;
+	virtual ErrorCode write(const char* buff, int buffSize) = 0;
 
 	virtual ErrorCode close() = 0;
 

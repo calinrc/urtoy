@@ -11,9 +11,24 @@
  ********************************************************************************************************************* */
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <ctime>
+#include <string>
+#include <sstream>
+
+using namespace std;
 
 int main() {
 
+	std::string str("calin:");
+	long l = 1234;
+	int a = 10;
+	stringstream ss;
+	ss << a;
+	str +=  ss.str();
+
+	printf(str.c_str());
+	srand(time(NULL));
 	return 0;
 }
 

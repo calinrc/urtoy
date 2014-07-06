@@ -13,49 +13,37 @@
 #ifndef INITINFO_H_
 #define INITINFO_H_
 
+#include <string>
+
+using namespace std;
+
 class InitInfo {
 public:
-	InitInfo(int port) {
-		m_port = port;
-	}
-
-	InitInfo(InitInfo& otherInfo) {
-		m_port = otherInfo.m_port;
-	}
 
 	int getPort() {
 		return m_port;
 	}
-
-private:
-	int m_port;
-};
-
-class LoginInfo {
-
-public:
-	LoginInfo(const char* username, const char* password) {
-		m_username = username;
-		m_password = password;
+	string& getUserName() {
+		return m_userName;
 	}
-
-	LoginInfo(LoginInfo& otherInfo) {
-		m_username = otherInfo.m_username;
-		m_password = otherInfo.m_password;
-	}
-
-	const char* getUserName() {
-		return m_username;
-	}
-
-	const char* getPassword() {
+	string& getPassword() {
 		return m_password;
 	}
 
-private:
-	const char* m_username;
-	const char* m_password;
+	static InitInfo* getInstangetce() {
+		return s_instance;
+	}
 
+private:
+	static InitInfo* s_instance;
+	InitInfo() :
+			m_port(1414), m_userName("test"), m_password("test") {
+	}
+
+private:
+	int m_port;
+	string m_userName;
+	string m_password;
 };
 
 #endif /* INITINFO_H_ */

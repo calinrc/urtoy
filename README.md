@@ -17,7 +17,7 @@ Commands:
 #### Login 
 		* Client - Sends command id
 		* Server - Server Sends Nonce (String value no more than 20 chars  )
-		* Client - Response (username + ':' +string( (int) charCount(password+nonce))  - This might be replaced with md5 in he future 
+		* Client - Response UTF-8 string  ---- (username + ':' +string( (int) charCount(password+nonce))  - This might be replaced with md5 in he future 
 		* Server - Response status ok or close connection (one bytes)
 
 #### Logout

@@ -17,8 +17,8 @@
 #include <stdio.h>
 #include <unistd.h>
 
-SocketExecutor::SocketExecutor(InitInfo& initInfo, LoginInfo& loginInfo) :
-		m_initInfo(initInfo), m_loginInfo(loginInfo), m_socketHandler(0), m_sockfd(
+SocketExecutor::SocketExecutor(InitInfo* initInfo) :
+		m_initInfo(initInfo),  m_socketHandler(0), m_sockfd(
 				0), m_clilen(0) {
 }
 
@@ -42,7 +42,7 @@ ErrorCode SocketExecutor::init() {
 	bzero((char *) &serv_addr, sizeof(serv_addr));
 	serv_addr.sin_family = AF_INET;
 	serv_addr.sin_addr.s_addr = INADDR_ANY;
-	serv_addr.sin_port = htons(m_initInfo.getPort());
+	serv_addr.sin_port = htons(m_initInfo->getPort());
 
 	/* Now bind the host address using bind() call.*/
 	if (bind(m_sockfd, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0) {
