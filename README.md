@@ -56,7 +56,7 @@ Commands:
         \config.properties (config file contaning key / value pair e.g. username, password, port etc )
         \remotes.txt (each line contains one remote - remoteId as long value in string + remote name )
         \remoteId as long value in string folder
-            \regions.bin file
+            \regions.bin file test123
             \image.jpg
             \<commandId>.bin - commandId - long value as string
 		
