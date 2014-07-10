@@ -26,7 +26,7 @@ Commands:
 
 #### GetRemotes
 		* Client sends command id
-		* Server sends back status + List of pairs (byte - remoteId , String remoteName )
+		* Server sends back status + int list length + List of pairs (byte - remoteId , String remoteName )
 
 #### SendRemoteCommand
 		* Client sends command id + remoteId (byte) + remote commandID (byte)

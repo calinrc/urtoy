@@ -72,9 +72,12 @@ ErrorCode Login::execute(TRANSPORTER_HANDLER streamHandler) {
 			if (eCode == EC_OK) {
 				string credentials(buff, size);
 				delete[] buff;
-				if (credentials == getResultString(InitInfo::getInstangetce(), nonce)){
+				if (credentials
+						== getResultString(InitInfo::getInstangetce(), nonce)) {
+					streamHandler->write(EC_OK);
 					return EC_OK;
-				}else{
+				} else {
+					streamHandler->write(EC_LOGIN_FAIL);
 					return EC_LOGIN_FAIL;
 				}
 			}

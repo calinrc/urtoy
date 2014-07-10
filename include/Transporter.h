@@ -30,6 +30,8 @@ public:
 
 	virtual ErrorCode write(const char* buff, int buffSize) = 0;
 
+	virtual ErrorCode write(char code) = 0;
+
 	virtual ErrorCode close() = 0;
 
 };

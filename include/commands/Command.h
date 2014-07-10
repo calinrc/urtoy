@@ -15,6 +15,7 @@
 
 #include "Constants.h"
 #include "ExecutorCallback.h"
+#include "Transporter.h"
 
 class CommandsDispatcher;
 

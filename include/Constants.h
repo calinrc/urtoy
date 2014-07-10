@@ -43,4 +43,6 @@ enum ErrorCode {
 class Transporter;
 typedef Transporter* TRANSPORTER_HANDLER;
 
+#define REMOTES_FILE "remotes.txt"
+
 #endif /* CONSTANTS_H_ */

@@ -19,7 +19,10 @@ private:
 	virtual ~Helpers();
 
 public:
-	static int bigEndienBytesToInt(char bytes[4]);
+	static long bigEndienBytesToInt(char bytes[]);
+
+	static void intToBigEndienBytes(long val, char* bytes);
+
 	static const int MAX_MEM_ALLOC_SIZE = 5 * 1024 * 1024; // max 5MB allocation for this app
 };
 
