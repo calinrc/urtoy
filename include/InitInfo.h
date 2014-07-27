@@ -34,7 +34,9 @@ public:
         return m_password;
     }
 
-    static InitInfo* getInstangetce ()
+    void release ();
+
+    static InitInfo* getInstance ()
     {
         return s_instance;
     }

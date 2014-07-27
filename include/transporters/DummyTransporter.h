@@ -1,6 +1,6 @@
 /*
- *    InitInfo.cpp file written and maintained by Calin Cocan
- *    Created on: Jul 7, 2014
+ *    DummyTransporter.h file written and maintained by Calin Cocan
+ *    Created on: Jul 27, 2014
  *
  * This work is free: you can redistribute it and/or modify it under the terms of Apache License Version 2.0
  *
@@ -9,13 +9,23 @@
  * You should have received a copy of the License along with this program. If not, see <http://choosealicense.com/licenses/apache-2.0/>.
 
  ********************************************************************************************************************* */
-#include "InitInfo.h"
 
-InitInfo* InitInfo::s_instance = new InitInfo ();
+#ifndef DUMMYTRANSPORTER_H_
+#define DUMMYTRANSPORTER_H_
 
+#include "Transporter.h"
 
-void InitInfo::release (){
-    delete this;
-    s_instance = NULL;
-}
+class DummyTransporter: public Transporter
+{
+public:
+    DummyTransporter ();
+    virtual ~DummyTransporter ();
+    virtual ErrorCode init (InitInfo* initInfo);
+    virtual ErrorCode read (char* buff, int buffSize);
+    virtual ErrorCode write (const char* buff, int buffSize);
+    virtual ErrorCode write (char code);
+    virtual ErrorCode close ();
 
+};
+
+#endif /* DUMMYTRANSPORTER_H_ */

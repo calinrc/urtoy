@@ -31,7 +31,7 @@ ErrorCode GetRemotes::execute (TRANSPORTER_HANDLER streamHandler)
 {
 
     ifstream read (REMOTES_FILE);
-    if (read.fail ())
+    if (read.fail ())//no remote.txt file available so no remotes exists
     {
         streamHandler->write (EC_OK);
     }

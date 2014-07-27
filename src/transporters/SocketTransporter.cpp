@@ -10,29 +10,30 @@
  *
  ********************************************************************************************************************* */
 
-#include "socket/SocketExecutor.h"
+#include "transporters/SocketTransporter.h"
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <strings.h>
 #include <stdio.h>
 #include <unistd.h>
 
-SocketExecutor::SocketExecutor (InitInfo* initInfo) :
-        m_initInfo (initInfo), m_socketHandler (0), m_sockfd (0), m_clilen (0)
+SocketTransporter::SocketTransporter () :
+        m_initInfo (NULL), m_socketHandler (0), m_sockfd (0), m_clilen (0)
 {
 }
 
-SocketExecutor::~SocketExecutor ()
+SocketTransporter::~SocketTransporter ()
 {
     if (m_socketHandler != 0)
     {
-        close (m_socketHandler);
+        ::close (m_socketHandler);
         m_socketHandler = 0;
     }
 }
 
-ErrorCode SocketExecutor::init ()
+ErrorCode SocketTransporter::init (InitInfo* initInfo)
 {
+    this->m_initInfo = initInfo;
     struct sockaddr_in serv_addr;
 
     /* First call to socket() function */
@@ -60,11 +61,10 @@ ErrorCode SocketExecutor::init ()
      */
     listen (m_sockfd, 5);
     m_clilen = sizeof(m_cli_addr);
-
-    return EC_OK;
+    return this->launch (initInfo);
 }
 
-ErrorCode SocketExecutor::launch ()
+ErrorCode SocketTransporter::launch (InitInfo* initInfo)
 {
     //char buffer[256];
     //int n = 0;
@@ -80,18 +80,38 @@ ErrorCode SocketExecutor::launch ()
     int commandId = 0;
     while (!end)
     {
-        if (read (m_socketHandler, &commandId, 1) < 0)
+        if (::read (m_socketHandler, &commandId, 1) < 0)
         {
 
         }
     }
     if (m_socketHandler != 0)
     {
-        close (m_socketHandler);
+        ::close (m_socketHandler);
         m_socketHandler = 0;
     }
 
     return EC_OK;
 
+}
+
+ErrorCode SocketTransporter::read (char* buff, int buffSize)
+{
+    return EC_NOT_IMPLEMENTED;
+}
+
+ErrorCode SocketTransporter::write (const char* buff, int buffSize)
+{
+    return EC_NOT_IMPLEMENTED;
+}
+
+ErrorCode SocketTransporter::write (char code)
+{
+    return EC_NOT_IMPLEMENTED;
+}
+
+ErrorCode SocketTransporter::close ()
+{
+    return EC_NOT_IMPLEMENTED;
 }
 

@@ -1,6 +1,6 @@
 /*
- *    InitInfo.cpp file written and maintained by Calin Cocan
- *    Created on: Jul 7, 2014
+ *    TransportFactory.h file written and maintained by Calin Cocan
+ *    Created on: Jul 27, 2014
  *
  * This work is free: you can redistribute it and/or modify it under the terms of Apache License Version 2.0
  *
@@ -9,13 +9,30 @@
  * You should have received a copy of the License along with this program. If not, see <http://choosealicense.com/licenses/apache-2.0/>.
 
  ********************************************************************************************************************* */
-#include "InitInfo.h"
 
-InitInfo* InitInfo::s_instance = new InitInfo ();
+#ifndef TRANSPORTFACTORY_H_
+#define TRANSPORTFACTORY_H_
 
+#include "Transporter.h"
 
-void InitInfo::release (){
-    delete this;
-    s_instance = NULL;
-}
+class TransportFactory
+{
 
+public:
+    void release ();
+
+    Transporter* getTransporter (InitInfo* initInfo);
+
+private:
+    TransportFactory ();
+    virtual ~TransportFactory ();
+
+    static TransportFactory* getInstance ()
+    {
+        return s_instance;
+    }
+    static TransportFactory* s_instance;
+
+};
+
+#endif /* TRANSPORTFACTORY_H_ */

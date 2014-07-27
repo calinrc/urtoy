@@ -21,11 +21,11 @@
 #include "commands/Logout.h"
 #include "Constants.h"
 #include "Transporter.h"
+#include <stddef.h>
 
 CommandsDispatcher* CommandsDispatcher::s_instance = CommandsDispatcher::initialize ();
 
-CommandsDispatcher*
-CommandsDispatcher::initialize ()
+CommandsDispatcher*CommandsDispatcher::initialize ()
 {
     CommandsDispatcher* factory = new CommandsDispatcher ();
     (new Login ())->reg (factory);
@@ -85,5 +85,5 @@ void CommandsDispatcher::reg (Command* command)
 void CommandsDispatcher::release ()
 {
     delete s_instance;
-    s_instance = 0;
+    s_instance = NULL;
 }

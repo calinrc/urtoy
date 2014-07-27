@@ -16,18 +16,27 @@
 #include "InitInfo.h"
 #include <netinet/in.h>
 #include "Constants.h"
+#include "Transporter.h"
 
-class SocketExecutor
+class SocketTransporter: public Transporter
 {
 
 public:
-    SocketExecutor (InitInfo* initInfo);
-    ~SocketExecutor ();
+    SocketTransporter ();
+    ~SocketTransporter ();
 
-    ErrorCode init ();
-    ErrorCode launch ();
+    virtual ErrorCode init (InitInfo* initInfo);
+
+    virtual ErrorCode read (char* buff, int buffSize);
+
+    virtual ErrorCode write (const char* buff, int buffSize);
+
+    virtual ErrorCode write (char code);
+
+    virtual ErrorCode close ();
 
 private:
+    ErrorCode launch (InitInfo* initInfo);
     InitInfo* m_initInfo;
     int m_socketHandler;
     int m_sockfd;

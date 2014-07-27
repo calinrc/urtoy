@@ -14,7 +14,6 @@
 #define COMMAND_H_
 
 #include "Constants.h"
-#include "ExecutorCallback.h"
 #include "Transporter.h"
 
 class CommandsDispatcher;

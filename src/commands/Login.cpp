@@ -82,7 +82,7 @@ ErrorCode Login::execute (TRANSPORTER_HANDLER streamHandler)
             {
                 string credentials (buff, size);
                 delete[] buff;
-                if (credentials == getResultString (InitInfo::getInstangetce (), nonce))
+                if (credentials == getResultString (InitInfo::getInstance(), nonce))
                 {
                     streamHandler->write (EC_OK);
                     return EC_OK;
@@ -92,9 +92,8 @@ ErrorCode Login::execute (TRANSPORTER_HANDLER streamHandler)
                     return EC_LOGIN_FAIL;
                 }
             }
-
         }
     }
-    return EC_NOT_IMPLEMENTED;
+    return eCode;
 }
 
