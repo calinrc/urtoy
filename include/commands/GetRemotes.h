@@ -15,17 +15,22 @@
 
 #include "Command.h"
 
-class GetRemotes: public Command {
+class GetRemotes : public Command
+{
 public:
-	GetRemotes();
-	virtual ~GetRemotes();
-	virtual CommandsId getCommandId() {
-		return GET_REMOTES;
-	}
-	;
+    GetRemotes ();
+    virtual
+    ~GetRemotes ();
+    virtual CommandsId
+    getCommandId ()
+    {
+        return GET_REMOTES;
+    }
+    ;
 
 protected:
-	virtual ErrorCode execute(TRANSPORTER_HANDLER streamHandler);
+    virtual ErrorCode
+    execute (TRANSPORTER_HANDLER streamHandler);
 };
 
 #endif /* GETREMOTES_H_ */

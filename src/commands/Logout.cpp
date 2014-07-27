@@ -13,14 +13,18 @@
 #include "commands/Logout.h"
 #include "Transporter.h"
 
-Logout::Logout() {
+Logout::Logout ()
+{
 
 }
 
-Logout::~Logout() {
+Logout::~Logout ()
+{
 }
 
-ErrorCode Logout::execute(TRANSPORTER_HANDLER streamHandler) {
-	return streamHandler->close();
+ErrorCode
+Logout::execute (TRANSPORTER_HANDLER streamHandler)
+{
+    return streamHandler->close ();
 }
 

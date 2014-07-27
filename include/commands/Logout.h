@@ -15,17 +15,22 @@
 
 #include "Command.h"
 
-class Logout: public Command {
+class Logout : public Command
+{
 public:
-	Logout();
-	virtual ~Logout();
-	virtual CommandsId getCommandId() {
-		return LOGOUT;
-	}
-	;
+    Logout ();
+    virtual
+    ~Logout ();
+    virtual CommandsId
+    getCommandId ()
+    {
+        return LOGOUT;
+    }
+    ;
 
 protected:
-	virtual ErrorCode execute(TRANSPORTER_HANDLER streamHandler);
+    virtual ErrorCode
+    execute (TRANSPORTER_HANDLER streamHandler);
 };
 
 #endif /* CLOSECOMMAND_H_ */

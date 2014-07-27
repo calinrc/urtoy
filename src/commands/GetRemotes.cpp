@@ -18,24 +18,29 @@
 
 using namespace std;
 
-GetRemotes::GetRemotes() {
+GetRemotes::GetRemotes ()
+{
 
 }
 
-GetRemotes::~GetRemotes() {
+GetRemotes::~GetRemotes ()
+{
 }
 
-ErrorCode GetRemotes::execute(TRANSPORTER_HANDLER streamHandler) {
+ErrorCode
+GetRemotes::execute (TRANSPORTER_HANDLER streamHandler)
+{
 
-	ifstream read(REMOTES_FILE);
-	if (read.fail()) {
-		streamHandler->write(EC_OK);
-	}
-	char number[4];
-	long length = 0;
-	Helpers::intToBigEndienBytes(length, number);
-	streamHandler->write(number, sizeof(number));
+    ifstream read (REMOTES_FILE);
+    if (read.fail ())
+        {
+            streamHandler->write (EC_OK);
+        }
+    char number[4];
+    long length = 0;
+    Helpers::intToBigEndienBytes (length, number);
+    streamHandler->write (number, sizeof(number));
 
-	return EC_OK;
+    return EC_OK;
 }
 

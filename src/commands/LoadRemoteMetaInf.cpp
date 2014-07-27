@@ -12,13 +12,17 @@
 
 #include "commands/LoadRemoteMetaInf.h"
 
-LoadRemoteMetaInf::LoadRemoteMetaInf() {
+LoadRemoteMetaInf::LoadRemoteMetaInf ()
+{
 
 }
 
-LoadRemoteMetaInf::~LoadRemoteMetaInf() {
+LoadRemoteMetaInf::~LoadRemoteMetaInf ()
+{
 }
 
-ErrorCode LoadRemoteMetaInf::execute(TRANSPORTER_HANDLER streamHandler) {
-	return EC_NOT_IMPLEMENTED;
+ErrorCode
+LoadRemoteMetaInf::execute (TRANSPORTER_HANDLER streamHandler)
+{
+    return EC_NOT_IMPLEMENTED;
 }

@@ -17,33 +17,43 @@
 
 using namespace std;
 
-class InitInfo {
+class InitInfo
+{
 public:
 
-	int getPort() {
-		return m_port;
-	}
-	string& getUserName() {
-		return m_userName;
-	}
-	string& getPassword() {
-		return m_password;
-	}
+    int
+    getPort ()
+    {
+        return m_port;
+    }
+    string&
+    getUserName ()
+    {
+        return m_userName;
+    }
+    string&
+    getPassword ()
+    {
+        return m_password;
+    }
 
-	static InitInfo* getInstangetce() {
-		return s_instance;
-	}
+    static InitInfo*
+    getInstangetce ()
+    {
+        return s_instance;
+    }
 
 private:
-	static InitInfo* s_instance;
-	InitInfo() :
-			m_port(1414), m_userName("test"), m_password("test") {
-	}
+    static InitInfo* s_instance;
+    InitInfo () :
+            m_port (1414), m_userName ("test"), m_password ("test")
+    {
+    }
 
 private:
-	int m_port;
-	string m_userName;
-	string m_password;
+    int m_port;
+    string m_userName;
+    string m_password;
 };
 
 #endif /* INITINFO_H_ */

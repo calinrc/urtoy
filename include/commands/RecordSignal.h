@@ -15,17 +15,22 @@
 
 #include "Command.h"
 
-class RecordSignal: public Command {
+class RecordSignal : public Command
+{
 public:
-	RecordSignal();
-	virtual ~RecordSignal();
-	virtual CommandsId getCommandId() {
-		return RECORD_SIGNAL;
-	}
-	;
+    RecordSignal ();
+    virtual
+    ~RecordSignal ();
+    virtual CommandsId
+    getCommandId ()
+    {
+        return RECORD_SIGNAL;
+    }
+    ;
 
 protected:
-	virtual ErrorCode execute(TRANSPORTER_HANDLER streamHandler);
+    virtual ErrorCode
+    execute (TRANSPORTER_HANDLER streamHandler);
 };
 
 #endif /* RECORDSIGNALCOMMAND_H_ */

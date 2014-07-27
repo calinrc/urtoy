@@ -15,17 +15,22 @@
 
 #include "Command.h"
 
-class NewRemote: public Command {
+class NewRemote : public Command
+{
 public:
-	NewRemote();
-	virtual ~NewRemote();
-	virtual CommandsId getCommandId() {
-		return NEW_REMOTE;
-	}
-	;
+    NewRemote ();
+    virtual
+    ~NewRemote ();
+    virtual CommandsId
+    getCommandId ()
+    {
+        return NEW_REMOTE;
+    }
+    ;
 
 protected:
-	virtual ErrorCode execute(TRANSPORTER_HANDLER streamHandler);
+    virtual ErrorCode
+    execute (TRANSPORTER_HANDLER streamHandler);
 };
 
 #endif /* NEWREMOTE_H_ */

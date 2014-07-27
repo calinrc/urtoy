@@ -18,17 +18,19 @@
 
 using namespace std;
 
-int main() {
+int
+main ()
+{
 
-	std::string str("calin:");
-	long l = 1234;
-	int a = 10;
-	stringstream ss;
-	ss << a;
-	str +=  ss.str();
+    std::string str ("calin:");
+    long l = 1234;
+    int a = 10;
+    stringstream ss;
+    ss << a;
+    str += ss.str ();
 
-	printf(str.c_str());
-	srand(time(NULL));
-	return 0;
+    printf (str.c_str ());
+    srand (time (NULL));
+    return 0;
 }
 

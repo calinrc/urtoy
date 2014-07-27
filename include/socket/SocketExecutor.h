@@ -17,21 +17,24 @@
 #include <netinet/in.h>
 #include "Constants.h"
 
-class SocketExecutor {
+class SocketExecutor
+{
 
 public:
-	SocketExecutor(InitInfo* initInfo);
-	~SocketExecutor();
+    SocketExecutor (InitInfo* initInfo);
+    ~SocketExecutor ();
 
-	ErrorCode init();
-	ErrorCode launch();
+    ErrorCode
+    init ();
+    ErrorCode
+    launch ();
 
 private:
-	InitInfo* m_initInfo;
-	int m_socketHandler;
-	int m_sockfd;
-	struct sockaddr_in m_cli_addr;
-	socklen_t m_clilen;
+    InitInfo* m_initInfo;
+    int m_socketHandler;
+    int m_sockfd;
+    struct sockaddr_in m_cli_addr;
+    socklen_t m_clilen;
 
 };
 

@@ -17,43 +17,57 @@
 #include "commands/Command.h"
 
 using namespace std;
-class CommandsDispatcher: public Command {
+class CommandsDispatcher : public Command
+{
 
 public:
-	static CommandsDispatcher* getInstance() {
-		return s_instance;
-	}
-	;
-	Command* getCommand(CommandsId id) {
-		return m_commands[id];
-	}
-	;
+    static CommandsDispatcher*
+    getInstance ()
+    {
+        return s_instance;
+    }
+    ;
+    Command*
+    getCommand (CommandsId id)
+    {
+        return m_commands[id];
+    }
+    ;
 
-	void reg(Command* command);
-	virtual CommandsId getCommandId() {
-		return UNKNOWN_COMMAND;
-	}
-	;
-	virtual void reg(CommandsDispatcher* factory) {
-	}
-	;
+    void
+    reg (Command* command);
+    virtual CommandsId
+    getCommandId ()
+    {
+        return UNKNOWN_COMMAND;
+    }
+    ;
+    virtual void
+    reg (CommandsDispatcher* factory)
+    {
+    }
+    ;
 
-	virtual ErrorCode execute(TRANSPORTER_HANDLER streamHandler);
+    virtual ErrorCode
+    execute (TRANSPORTER_HANDLER streamHandler);
 
-	static void release();
+    static void
+    release ();
 
 private:
-	CommandsDispatcher() :
-			m_isloggon(false) {
-	}
-	~CommandsDispatcher();
+    CommandsDispatcher () :
+            m_isloggon (false)
+    {
+    }
+    ~CommandsDispatcher ();
 
-	static CommandsDispatcher* initialize();
+    static CommandsDispatcher*
+    initialize ();
 
-	static CommandsDispatcher* s_instance;
+    static CommandsDispatcher* s_instance;
 
-	map<CommandsId, Command*> m_commands;
-	bool m_isloggon;
+    map<CommandsId, Command*> m_commands;
+    bool m_isloggon;
 
 };
 

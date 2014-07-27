@@ -15,18 +15,23 @@
 
 #include "Command.h"
 
-class LoadRemoteMetaInf: public Command {
+class LoadRemoteMetaInf : public Command
+{
 public:
-	LoadRemoteMetaInf();
-	virtual ~LoadRemoteMetaInf();
+    LoadRemoteMetaInf ();
+    virtual
+    ~LoadRemoteMetaInf ();
 
-	virtual CommandsId getCommandId() {
-		return LOAD_REMOTE_METAINF;
-	}
-	;
+    virtual CommandsId
+    getCommandId ()
+    {
+        return LOAD_REMOTE_METAINF;
+    }
+    ;
 
 protected:
-	virtual ErrorCode execute(TRANSPORTER_HANDLER streamHandler);
+    virtual ErrorCode
+    execute (TRANSPORTER_HANDLER streamHandler);
 
 };
 

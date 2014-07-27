@@ -13,13 +13,17 @@
 #ifndef EXECUTORCALLBACK_H_
 #define EXECUTORCALLBACK_H_
 
-class ExecutorCallback {
+class ExecutorCallback
+{
 
 public:
-	virtual ~ExecutorCallback() {
-	}
+    virtual
+    ~ExecutorCallback ()
+    {
+    }
 
-	virtual void close() = 0;
+    virtual void
+    close () = 0;
 
 };
 

@@ -12,14 +12,18 @@
 
 #include "commands/RecordSignal.h"
 
-RecordSignal::RecordSignal() {
+RecordSignal::RecordSignal ()
+{
 
 }
 
-RecordSignal::~RecordSignal() {
+RecordSignal::~RecordSignal ()
+{
 }
 
-ErrorCode RecordSignal::execute(TRANSPORTER_HANDLER streamHandler) {
-	return EC_NOT_IMPLEMENTED;
+ErrorCode
+RecordSignal::execute (TRANSPORTER_HANDLER streamHandler)
+{
+    return EC_NOT_IMPLEMENTED;
 }
 
