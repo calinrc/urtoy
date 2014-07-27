@@ -32,22 +32,19 @@ Login::~Login ()
 
 static const char charset[] = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-char
-get_rand_char ()
+char get_rand_char ()
 {
     return charset[rand () % sizeof(charset)];
 }
 
-string
-generate_random_string (size_t n)
+string generate_random_string (size_t n)
 {
     char rbuf[n];
     std::generate (rbuf, rbuf + n, &get_rand_char);
     return std::string (rbuf, n);
 }
 
-static string
-getResultString (InitInfo* initInfo, string nonce)
+static string getResultString (InitInfo* initInfo, string nonce)
 {
     stringstream ss;
     ss << initInfo->getUserName ();
@@ -56,50 +53,48 @@ getResultString (InitInfo* initInfo, string nonce)
     long l = 0;
     const char* szPart = part.c_str ();
     for (size_t i = 0; i < part.size (); i++)
-        {
-            l += szPart[i];
-        }
+    {
+        l += szPart[i];
+    }
     ss << l;
     return ss.str ();
 
 }
 
-ErrorCode
-Login::execute (TRANSPORTER_HANDLER streamHandler)
+ErrorCode Login::execute (TRANSPORTER_HANDLER streamHandler)
 {
     ErrorCode eCode = EC_OK;
     string nonce = generate_random_string (rand () % 20);
     eCode = streamHandler->write (nonce.c_str (), nonce.size ());
     if (eCode == EC_OK)
+    {
+        char intBytes[4];
+        streamHandler->read (intBytes, sizeof(intBytes));
+        int size = Helpers::bigEndienBytesToInt (intBytes);
+        if (size < 0 || size > Helpers::MAX_MEM_ALLOC_SIZE)
         {
-            char intBytes[4];
-            streamHandler->read (intBytes, sizeof(intBytes));
-            int size = Helpers::bigEndienBytesToInt (intBytes);
-            if (size < 0 || size > Helpers::MAX_MEM_ALLOC_SIZE)
+            return EC_INVALID_LENGTH;
+        } else
+        {
+            char* buff = new char[size];
+            eCode = streamHandler->read (buff, size);
+            if (eCode == EC_OK)
+            {
+                string credentials (buff, size);
+                delete[] buff;
+                if (credentials == getResultString (InitInfo::getInstangetce (), nonce))
                 {
-                    return EC_INVALID_LENGTH;
+                    streamHandler->write (EC_OK);
+                    return EC_OK;
                 } else
                 {
-                    char* buff = new char[size];
-                    eCode = streamHandler->read (buff, size);
-                    if (eCode == EC_OK)
-                        {
-                            string credentials (buff, size);
-                            delete[] buff;
-                            if (credentials == getResultString (InitInfo::getInstangetce (), nonce))
-                                {
-                                    streamHandler->write (EC_OK);
-                                    return EC_OK;
-                                } else
-                                {
-                                    streamHandler->write (EC_LOGIN_FAIL);
-                                    return EC_LOGIN_FAIL;
-                                }
-                        }
-
+                    streamHandler->write (EC_LOGIN_FAIL);
+                    return EC_LOGIN_FAIL;
                 }
-        }
+            }
 
+        }
+    }
     return EC_NOT_IMPLEMENTED;
 }
 

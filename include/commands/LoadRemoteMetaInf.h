@@ -22,8 +22,7 @@ public:
     virtual
     ~LoadRemoteMetaInf ();
 
-    virtual CommandsId
-    getCommandId ()
+    virtual CommandsId getCommandId ()
     {
         return LOAD_REMOTE_METAINF;
     }

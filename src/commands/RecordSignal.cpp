@@ -21,8 +21,7 @@ RecordSignal::~RecordSignal ()
 {
 }
 
-ErrorCode
-RecordSignal::execute (TRANSPORTER_HANDLER streamHandler)
+ErrorCode RecordSignal::execute (TRANSPORTER_HANDLER streamHandler)
 {
     return EC_NOT_IMPLEMENTED;
 }

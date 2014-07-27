@@ -13,8 +13,7 @@
 #include "commands/Command.h"
 #include "commands/CommandsDispatcher.h"
 
-void
-Command::reg (CommandsDispatcher* factory)
+void Command::reg (CommandsDispatcher* factory)
 {
     factory->reg (this);
 }

@@ -21,8 +21,7 @@ SaveRemoteMetaInf::~SaveRemoteMetaInf ()
 {
 }
 
-ErrorCode
-SaveRemoteMetaInf::execute (TRANSPORTER_HANDLER streamHandler)
+ErrorCode SaveRemoteMetaInf::execute (TRANSPORTER_HANDLER streamHandler)
 {
     return EC_NOT_IMPLEMENTED;
 }

@@ -36,14 +36,12 @@ public:
 
     void
     reg (Command* command);
-    virtual CommandsId
-    getCommandId ()
+    virtual CommandsId getCommandId ()
     {
         return UNKNOWN_COMMAND;
     }
     ;
-    virtual void
-    reg (CommandsDispatcher* factory)
+    virtual void reg (CommandsDispatcher* factory)
     {
     }
     ;

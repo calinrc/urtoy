@@ -18,8 +18,7 @@
 
 using namespace std;
 
-int
-main ()
+int main ()
 {
 
     std::string str ("calin:");

@@ -17,8 +17,7 @@ class ExecutorCallback
 {
 
 public:
-    virtual
-    ~ExecutorCallback ()
+    virtual ~ExecutorCallback ()
     {
     }
 

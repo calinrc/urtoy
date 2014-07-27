@@ -21,8 +21,7 @@ class InitInfo
 {
 public:
 
-    int
-    getPort ()
+    int getPort ()
     {
         return m_port;
     }

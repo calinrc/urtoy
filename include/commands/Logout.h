@@ -21,8 +21,7 @@ public:
     Logout ();
     virtual
     ~Logout ();
-    virtual CommandsId
-    getCommandId ()
+    virtual CommandsId getCommandId ()
     {
         return LOGOUT;
     }

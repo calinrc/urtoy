@@ -22,8 +22,7 @@ public:
     virtual
     ~Login ();
 
-    virtual CommandsId
-    getCommandId ()
+    virtual CommandsId getCommandId ()
     {
         return LOGIN;
     }

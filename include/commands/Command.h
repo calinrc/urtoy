@@ -23,8 +23,7 @@ class Command
 {
 
 public:
-    virtual
-    ~Command ()
+    virtual ~Command ()
     {
     }
 

@@ -21,8 +21,7 @@ public:
     SaveRemoteMetaInf ();
     virtual
     ~SaveRemoteMetaInf ();
-    virtual CommandsId
-    getCommandId ()
+    virtual CommandsId getCommandId ()
     {
         return SAVE_REMOTE_METAINF;
     }

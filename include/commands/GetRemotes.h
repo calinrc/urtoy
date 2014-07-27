@@ -21,8 +21,7 @@ public:
     GetRemotes ();
     virtual
     ~GetRemotes ();
-    virtual CommandsId
-    getCommandId ()
+    virtual CommandsId getCommandId ()
     {
         return GET_REMOTES;
     }

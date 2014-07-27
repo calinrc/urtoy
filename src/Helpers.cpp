@@ -21,23 +21,21 @@ Helpers::~Helpers ()
 {
 }
 
-long
-Helpers::bigEndienBytesToInt (char bytes[4])
+long Helpers::bigEndienBytesToInt (char bytes[4])
 {
     long retVal = 0;
     for (size_t i = 0; i < sizeof(bytes); i++)
+    {
+        if (bytes[i] < 0)
         {
-            if (bytes[i] < 0)
-                {
-                    return -1;
-                }
+            return -1;
         }
+    }
     retVal = (bytes[0] << 24) + (bytes[1] << 16) + (bytes[2] << 8) + (bytes[3] << 0);
     return retVal;
 }
 
-void
-Helpers::intToBigEndienBytes (long val, char* bytes)
+void Helpers::intToBigEndienBytes (long val, char* bytes)
 {
     bytes[0] = ((unsigned int) val >> 24) & 0xFF;
     bytes[1] = ((unsigned int) val >> 16) & 0xFF;

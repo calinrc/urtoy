@@ -21,8 +21,7 @@ LoadRemoteMetaInf::~LoadRemoteMetaInf ()
 {
 }
 
-ErrorCode
-LoadRemoteMetaInf::execute (TRANSPORTER_HANDLER streamHandler)
+ErrorCode LoadRemoteMetaInf::execute (TRANSPORTER_HANDLER streamHandler)
 {
     return EC_NOT_IMPLEMENTED;
 }

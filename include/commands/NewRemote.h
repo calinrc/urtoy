@@ -21,8 +21,7 @@ public:
     NewRemote ();
     virtual
     ~NewRemote ();
-    virtual CommandsId
-    getCommandId ()
+    virtual CommandsId getCommandId ()
     {
         return NEW_REMOTE;
     }

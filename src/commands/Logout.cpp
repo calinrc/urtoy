@@ -22,8 +22,7 @@ Logout::~Logout ()
 {
 }
 
-ErrorCode
-Logout::execute (TRANSPORTER_HANDLER streamHandler)
+ErrorCode Logout::execute (TRANSPORTER_HANDLER streamHandler)
 {
     return streamHandler->close ();
 }

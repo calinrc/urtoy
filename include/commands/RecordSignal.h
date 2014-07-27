@@ -21,8 +21,7 @@ public:
     RecordSignal ();
     virtual
     ~RecordSignal ();
-    virtual CommandsId
-    getCommandId ()
+    virtual CommandsId getCommandId ()
     {
         return RECORD_SIGNAL;
     }

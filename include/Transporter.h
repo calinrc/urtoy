@@ -23,8 +23,7 @@ public:
     Transporter ()
     {
     }
-    virtual
-    ~Transporter ()
+    virtual ~Transporter ()
     {
     }
 

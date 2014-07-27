@@ -21,8 +21,7 @@ public:
     SendRemoteCommand ();
     virtual
     ~SendRemoteCommand ();
-    virtual CommandsId
-    getCommandId ()
+    virtual CommandsId getCommandId ()
     {
         return SEND_REOTE_COMMAND;
     }

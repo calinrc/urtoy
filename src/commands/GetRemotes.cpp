@@ -27,15 +27,14 @@ GetRemotes::~GetRemotes ()
 {
 }
 
-ErrorCode
-GetRemotes::execute (TRANSPORTER_HANDLER streamHandler)
+ErrorCode GetRemotes::execute (TRANSPORTER_HANDLER streamHandler)
 {
 
     ifstream read (REMOTES_FILE);
     if (read.fail ())
-        {
-            streamHandler->write (EC_OK);
-        }
+    {
+        streamHandler->write (EC_OK);
+    }
     char number[4];
     long length = 0;
     Helpers::intToBigEndienBytes (length, number);
