@@ -25,19 +25,16 @@ public:
     {
         return m_port;
     }
-    string&
-    getUserName ()
+    string& getUserName ()
     {
         return m_userName;
     }
-    string&
-    getPassword ()
+    string& getPassword ()
     {
         return m_password;
     }
 
-    static InitInfo*
-    getInstangetce ()
+    static InitInfo* getInstangetce ()
     {
         return s_instance;
     }

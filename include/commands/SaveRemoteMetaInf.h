@@ -19,17 +19,14 @@ class SaveRemoteMetaInf : public Command
 {
 public:
     SaveRemoteMetaInf ();
-    virtual
-    ~SaveRemoteMetaInf ();
+    virtual ~SaveRemoteMetaInf ();
     virtual CommandsId getCommandId ()
     {
         return SAVE_REMOTE_METAINF;
     }
-    ;
 
 protected:
-    virtual ErrorCode
-    execute (TRANSPORTER_HANDLER streamHandler);
+    virtual ErrorCode execute (TRANSPORTER_HANDLER streamHandler);
 };
 
 #endif /* SAVEREMOTE_H_ */

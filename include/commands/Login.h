@@ -19,8 +19,7 @@ class Login : public Command
 {
 public:
     Login ();
-    virtual
-    ~Login ();
+    virtual ~Login ();
 
     virtual CommandsId getCommandId ()
     {
@@ -28,8 +27,7 @@ public:
     }
 
 protected:
-    virtual ErrorCode
-    execute (TRANSPORTER_HANDLER streamHandler);
+    virtual ErrorCode execute (TRANSPORTER_HANDLER streamHandler);
 };
 
 #endif /* LOGINCOMMAND_H_ */

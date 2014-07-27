@@ -24,10 +24,8 @@ public:
     SocketExecutor (InitInfo* initInfo);
     ~SocketExecutor ();
 
-    ErrorCode
-    init ();
-    ErrorCode
-    launch ();
+    ErrorCode init ();
+    ErrorCode launch ();
 
 private:
     InitInfo* m_initInfo;
