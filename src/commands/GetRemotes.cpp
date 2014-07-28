@@ -15,6 +15,10 @@
 #include <string>
 #include <fstream>
 #include "Helpers.h"
+#include <stdio.h>
+#include <sstream>
+#include <string>
+#include <map>
 
 using namespace std;
 
@@ -31,15 +35,39 @@ ErrorCode GetRemotes::execute (TRANSPORTER_HANDLER streamHandler)
 {
 
     ifstream read (REMOTES_FILE);
-    if (read.fail ())//no remote.txt file available so no remotes exists
-    {
-        streamHandler->write (EC_OK);
-    }
-    char number[4];
     long length = 0;
+    map<long, std::string> remotesMap;
+    if (!read.fail ()) //no remote.txt file available so no remotes exists
+    {
+        string line;
+        while (getline (read, line))
+        {
+            istringstream iss (line);
+            long remoteId;
+            string remoteName;
+            if (!(iss >> remoteId >> remoteName))
+            {
+                break;
+            }
+            remotesMap[remoteId] = remoteName;
+            length++;
+        }
+    }
+    streamHandler->write (EC_OK);
+    char number[4];
     Helpers::intToBigEndienBytes (length, number);
     streamHandler->write (number, sizeof(number));
-
+    for (map<long, string>::iterator mapIt = remotesMap.begin (); mapIt != remotesMap.end (); mapIt++)
+    {
+        long remoteId = mapIt->first;
+        string remoteName = mapIt->second;
+        Helpers::intToBigEndienBytes (remoteId, number);
+        streamHandler->write (number, sizeof(number));
+        long remoteSizeName = remoteName.size ();
+        Helpers::intToBigEndienBytes (remoteSizeName, number);
+        streamHandler->write (number, sizeof(number));
+        streamHandler->write (remoteName.c_str (), remoteSizeName);
+    }
     return EC_OK;
 }
 
