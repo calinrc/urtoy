@@ -11,14 +11,14 @@
  ********************************************************************************************************************* */
 
 #include "commands/GetRemotes.h"
+#include "remotes/RemotesManipulator.h"
 #include <sstream>
 #include <string>
 #include <fstream>
-#include "Helpers.h"
-#include <stdio.h>
 #include <sstream>
-#include <string>
 #include <map>
+
+#include "Helpers.h"
 
 using namespace std;
 
@@ -34,25 +34,12 @@ GetRemotes::~GetRemotes ()
 ErrorCode GetRemotes::execute (TRANSPORTER_HANDLER streamHandler)
 {
 
-    ifstream read (REMOTES_FILE);
     long length = 0;
     map<long, std::string> remotesMap;
-    if (!read.fail ()) //no remote.txt file available so no remotes exists
-    {
-        string line;
-        while (getline (read, line))
-        {
-            istringstream iss (line);
-            long remoteId;
-            string remoteName;
-            if (!(iss >> remoteId >> remoteName))
-            {
-                break;
-            }
-            remotesMap[remoteId] = remoteName;
-            length++;
-        }
-    }
+    RemotesManipulator* rm = RemotesManipulator::getInstance ();
+    rm->init (REMOTES_FILE);
+    remotesMap = rm->getRemotesMap ();
+    length = remotesMap.size ();
     streamHandler->write (EC_OK);
     char number[4];
     Helpers::intToBigEndienBytes (length, number);
