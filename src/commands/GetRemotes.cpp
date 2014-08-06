@@ -33,12 +33,11 @@ GetRemotes::~GetRemotes ()
 
 ErrorCode GetRemotes::execute (TRANSPORTER_HANDLER streamHandler)
 {
-
     long length = 0;
     map<long, std::string> remotesMap;
     RemotesManipulator* rm = RemotesManipulator::getInstance ();
-    rm->init (REMOTES_FILE);
-    remotesMap = rm->getRemotesMap ();
+    rm->load (REMOTES_FILE);
+    remotesMap = rm->getRemotesIdNameMap ();
     length = remotesMap.size ();
     streamHandler->write (EC_OK);
     char number[4];

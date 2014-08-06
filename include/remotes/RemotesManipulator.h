@@ -16,22 +16,19 @@
 #include <map>
 #include <string>
 
+using namespace std;
+
 class RemotesManipulator
 {
 public:
-    void init (const char* fileName);
-
-    std::map<long, std::string>& getRemotesMap ()
-    {
-        return m_remotesMap;
-    }
-
-    static RemotesManipulator* getInstance ()
-    {
-        return sInstance;
-    }
-
-    void release();
+    void load (string fileName);
+    void save (string fileName);
+    long addRemote (string remoteName);
+    bool containsRemote (string remoteName);
+    long getRemoteId (string remoteName);
+    bool deleteRemote (string remoteName);
+    std::map<long, std::string>& getRemotesIdNameMap ();
+    static RemotesManipulator* getInstance ();
 
 private:
     RemotesManipulator ()
@@ -40,7 +37,9 @@ private:
     ~RemotesManipulator ()
     {
     }
-    std::map<long, std::string> m_remotesMap;
+
+    std::map<long, std::string> m_remotesIdNameMap;
+    std::map<std::string, long> m_remotesNameIdMap;
 
     static RemotesManipulator* sInstance;
 
