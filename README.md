@@ -1,6 +1,12 @@
 urtoy
 =====
 
+Description:
+------------
+
+URToy cpp project want to be the server side of an universal IR remote control tool.
+The initial version will use the usb IRToy device to record, and resend remotes commands
+
 
 Notes:
 -----
@@ -14,42 +20,42 @@ Commands:
 ---------
 
 
-#### Login 
+### Login 
 		* Client - Sends command id
 		* Server - Server Sends Nonce (String value no more than 20 chars  )
 		* Client - Response UTF-8 string  ---- (username + ':' +string( (int) charCount(password+nonce))  - This might be replaced with md5 in he future 
 		* Server - Response status ok or close connection (one bytes)
 
-#### Logout
+### Logout
 		* Client sends command id
 		* Server close connection
 
-#### GetRemotes
+### GetRemotes
 		* Client sends command id
 		* Server sends back status + int list length + List of pairs (byte - remoteId , String remoteName )
 
-#### SendRemoteCommand
+### SendRemoteCommand
 		* Client sends command id + remoteId (byte) + remote commandID (byte)
 		* Server respods status 
 
-#### NewRemote
+### NewRemote
 		* Client sends command id + remoteId(byte) + name (String)
 		* Server creates a new remote and its name and responds status 
 
-#### RecordSignal
+### RecordSignal
 		* Client sends command id + remoteID (byte) + remote commandId(byte)
 		* Server records the signal , save it and respond with status
 
-#### SaveRemoteMetaInf
+### SaveRemoteMetaInf
 		* Client sends command id + (int) length of region file bytes + (int) length of the picture + region bytes + pictue bytes
 		* Serve responds status  
 
-#### LoadRemoteMetaInf
+### LoadRemoteMetaInf
 		* Client sends command id + remoteId (8 bytes long value)
 		* Server responds status + (int) length of region file bytes + (int) length of the picture + region bytes + pictue bytes
 
 		
-# Server file structure
+## Server file structure
 
 
     <AppFolder>
