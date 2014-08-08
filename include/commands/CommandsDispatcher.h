@@ -21,36 +21,36 @@ class CommandsDispatcher : public Command
 {
 
 public:
-    static CommandsDispatcher* getInstance ()
+    static CommandsDispatcher* getInstance()
     {
         return s_instance;
     }
-    Command* getCommand (CommandsId id)
+    Command* getCommand(CommandsId id)
     {
         return m_commands[id];
     }
 
-    void reg (Command* command);
-    virtual CommandsId getCommandId ()
+    void reg(Command* command);
+    virtual CommandsId getCommandId()
     {
         return UNKNOWN_COMMAND;
     }
-    virtual void reg (CommandsDispatcher* factory)
+    virtual void reg(CommandsDispatcher* factory)
     {
     }
 
-    virtual ErrorCode execute (TRANSPORTER_HANDLER streamHandler);
+    virtual ErrorCode execute(TRANSPORTER_HANDLER streamHandler);
 
-    static void release ();
+    static void release();
 
 private:
-    CommandsDispatcher () :
-            m_isloggon (false)
+    CommandsDispatcher() :
+            m_isloggon(false)
     {
     }
-    ~CommandsDispatcher ();
+    ~CommandsDispatcher();
 
-    static CommandsDispatcher* initialize ();
+    static CommandsDispatcher* initialize();
 
     static CommandsDispatcher* s_instance;
 

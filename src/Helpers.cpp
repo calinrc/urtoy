@@ -13,15 +13,15 @@
 #include <Helpers.h>
 #include <stddef.h>
 
-Helpers::Helpers ()
+Helpers::Helpers()
 {
 }
 
-Helpers::~Helpers ()
+Helpers::~Helpers()
 {
 }
 
-long Helpers::bigEndienBytesToInt (char bytes[4])
+long Helpers::bigEndienBytesToInt(char bytes[4])
 {
     long retVal = 0;
     for (size_t i = 0; i < sizeof(bytes); i++)
@@ -35,7 +35,7 @@ long Helpers::bigEndienBytesToInt (char bytes[4])
     return retVal;
 }
 
-void Helpers::intToBigEndienBytes (long val, char* bytes)
+void Helpers::intToBigEndienBytes(long val, char* bytes)
 {
     bytes[0] = ((unsigned int) val >> 24) & 0xFF;
     bytes[1] = ((unsigned int) val >> 16) & 0xFF;

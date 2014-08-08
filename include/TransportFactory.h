@@ -19,15 +19,15 @@ class TransportFactory
 {
 
 public:
-    void release ();
+    void release();
 
-    Transporter* getTransporter (InitInfo* initInfo);
+    Transporter* getTransporter(InitInfo* initInfo);
 
 private:
-    TransportFactory ();
-    virtual ~TransportFactory ();
+    TransportFactory();
+    virtual ~TransportFactory();
 
-    static TransportFactory* getInstance ()
+    static TransportFactory* getInstance()
     {
         return s_instance;
     }

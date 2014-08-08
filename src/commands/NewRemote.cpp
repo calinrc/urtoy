@@ -12,16 +12,16 @@
 
 #include "commands/NewRemote.h"
 
-NewRemote::NewRemote ()
+NewRemote::NewRemote()
 {
 
 }
 
-NewRemote::~NewRemote ()
+NewRemote::~NewRemote()
 {
 }
 
-ErrorCode NewRemote::execute (TRANSPORTER_HANDLER streamHandler)
+ErrorCode NewRemote::execute(TRANSPORTER_HANDLER streamHandler)
 {
     return EC_NOT_IMPLEMENTED;
 }

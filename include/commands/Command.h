@@ -22,15 +22,15 @@ class Command
 {
 
 public:
-    virtual ~Command ()
+    virtual ~Command()
     {
     }
 
-    virtual void reg (CommandsDispatcher* factory);
+    virtual void reg(CommandsDispatcher* factory);
 
-    virtual CommandsId getCommandId () = 0;
+    virtual CommandsId getCommandId() = 0;
 
-    virtual ErrorCode execute (TRANSPORTER_HANDLER streamHandler) = 0;
+    virtual ErrorCode execute(TRANSPORTER_HANDLER streamHandler) = 0;
 };
 
 #endif /* COMMAND_H_ */

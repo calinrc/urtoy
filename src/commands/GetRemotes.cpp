@@ -22,37 +22,37 @@
 
 using namespace std;
 
-GetRemotes::GetRemotes ()
+GetRemotes::GetRemotes()
 {
 
 }
 
-GetRemotes::~GetRemotes ()
+GetRemotes::~GetRemotes()
 {
 }
 
-ErrorCode GetRemotes::execute (TRANSPORTER_HANDLER streamHandler)
+ErrorCode GetRemotes::execute(TRANSPORTER_HANDLER streamHandler)
 {
     long length = 0;
     map<long, std::string> remotesMap;
-    RemotesManipulator* rm = RemotesManipulator::getInstance ();
-    rm->load (REMOTES_FILE);
-    remotesMap = rm->getRemotesIdNameMap ();
-    length = remotesMap.size ();
-    streamHandler->write (EC_OK);
+    RemotesManipulator* rm = RemotesManipulator::getInstance();
+    rm->load(REMOTES_FILE);
+    remotesMap = rm->getRemotesIdNameMap();
+    length = remotesMap.size();
+    streamHandler->write(EC_OK);
     char number[4];
-    Helpers::intToBigEndienBytes (length, number);
-    streamHandler->write (number, sizeof(number));
-    for (map<long, string>::iterator mapIt = remotesMap.begin (); mapIt != remotesMap.end (); mapIt++)
+    Helpers::intToBigEndienBytes(length, number);
+    streamHandler->write(number, sizeof(number));
+    for (map<long, string>::iterator mapIt = remotesMap.begin(); mapIt != remotesMap.end(); mapIt++)
     {
         long remoteId = mapIt->first;
         string remoteName = mapIt->second;
-        Helpers::intToBigEndienBytes (remoteId, number);
-        streamHandler->write (number, sizeof(number));
-        long remoteSizeName = remoteName.size ();
-        Helpers::intToBigEndienBytes (remoteSizeName, number);
-        streamHandler->write (number, sizeof(number));
-        streamHandler->write (remoteName.c_str (), remoteSizeName);
+        Helpers::intToBigEndienBytes(remoteId, number);
+        streamHandler->write(number, sizeof(number));
+        long remoteSizeName = remoteName.size();
+        Helpers::intToBigEndienBytes(remoteSizeName, number);
+        streamHandler->write(number, sizeof(number));
+        streamHandler->write(remoteName.c_str(), remoteSizeName);
     }
     return EC_OK;
 }

@@ -17,77 +17,77 @@
 #include <stdio.h>
 #include <unistd.h>
 
-SocketTransporter::SocketTransporter () :
-        m_initInfo (NULL), m_socketHandler (0), m_sockfd (0), m_clilen (0)
+SocketTransporter::SocketTransporter() :
+        m_initInfo(NULL), m_socketHandler(0), m_sockfd(0), m_clilen(0)
 {
 }
 
-SocketTransporter::~SocketTransporter ()
+SocketTransporter::~SocketTransporter()
 {
     if (m_socketHandler != 0)
     {
-        ::close (m_socketHandler);
+        ::close(m_socketHandler);
         m_socketHandler = 0;
     }
 }
 
-ErrorCode SocketTransporter::init (InitInfo* initInfo)
+ErrorCode SocketTransporter::init(InitInfo* initInfo)
 {
     this->m_initInfo = initInfo;
     struct sockaddr_in serv_addr;
 
     /* First call to socket() function */
-    m_sockfd = socket (AF_INET, SOCK_STREAM, 0);
+    m_sockfd = socket(AF_INET, SOCK_STREAM, 0);
     if (m_sockfd < 0)
     {
-        perror ("ERROR opening socket");
+        perror("ERROR opening socket");
         return EC_SOCKET_FAIL;
     }
     /* Initialize socket structure */
-    bzero ((char *) &serv_addr, sizeof(serv_addr));
+    bzero((char *) &serv_addr, sizeof(serv_addr));
     serv_addr.sin_family = AF_INET;
     serv_addr.sin_addr.s_addr = INADDR_ANY;
-    serv_addr.sin_port = htons (m_initInfo->getPort ());
+    serv_addr.sin_port = htons(m_initInfo->getPort());
 
     /* Now bind the host address using bind() call.*/
-    if (bind (m_sockfd, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0)
+    if (bind(m_sockfd, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0)
     {
-        perror ("ERROR on binding");
+        perror("ERROR on binding");
         return EC_BIND_FAIL;
     }
 
     /* Now start listening for the clients, here process will
      * go in sleep mode and will wait for the incoming connection
      */
-    listen (m_sockfd, 5);
+    listen(m_sockfd, 5);
     m_clilen = sizeof(m_cli_addr);
-    return this->launch (initInfo);
+    return this->launch(initInfo);
 }
 
-ErrorCode SocketTransporter::launch (InitInfo* initInfo)
+ErrorCode SocketTransporter::launch(InitInfo* initInfo)
 {
     //char buffer[256];
     //int n = 0;
 
     /* Accept actual connection from the client */
-    m_socketHandler = accept (m_sockfd, (struct sockaddr *) &m_cli_addr, &m_clilen);
+    m_socketHandler = accept(m_sockfd, (struct sockaddr *) &m_cli_addr, &m_clilen);
     if (m_socketHandler < 0)
     {
-        perror ("ERROR on accept");
+        perror("ERROR on accept");
         return EC_ACCEPT_FAIL;
     }
     bool end = false;
     int commandId = 0;
     while (!end)
     {
-        if (::read (m_socketHandler, &commandId, 1) < 0)
+        if (::read(m_socketHandler, &commandId, 1) < 0)
         {
 
         }
     }
     if (m_socketHandler != 0)
     {
-        ::close (m_socketHandler);
+        ::close(m_socketHandler);
         m_socketHandler = 0;
     }
 
@@ -95,22 +95,22 @@ ErrorCode SocketTransporter::launch (InitInfo* initInfo)
 
 }
 
-ErrorCode SocketTransporter::read (char* buff, int buffSize)
+ErrorCode SocketTransporter::read(char* buff, int buffSize)
 {
     return EC_NOT_IMPLEMENTED;
 }
 
-ErrorCode SocketTransporter::write (const char* buff, int buffSize)
+ErrorCode SocketTransporter::write(const char* buff, int buffSize)
 {
     return EC_NOT_IMPLEMENTED;
 }
 
-ErrorCode SocketTransporter::write (char code)
+ErrorCode SocketTransporter::write(char code)
 {
     return EC_NOT_IMPLEMENTED;
 }
 
-ErrorCode SocketTransporter::close ()
+ErrorCode SocketTransporter::close()
 {
     return EC_NOT_IMPLEMENTED;
 }

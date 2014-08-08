@@ -15,16 +15,16 @@
 
 #include "Transporter.h"
 
-class DummyTransporter: public Transporter
+class DummyTransporter : public Transporter
 {
 public:
-    DummyTransporter ();
-    virtual ~DummyTransporter ();
-    virtual ErrorCode init (InitInfo* initInfo);
-    virtual ErrorCode read (char* buff, int buffSize);
-    virtual ErrorCode write (const char* buff, int buffSize);
-    virtual ErrorCode write (char code);
-    virtual ErrorCode close ();
+    DummyTransporter();
+    virtual ~DummyTransporter();
+    virtual ErrorCode init(InitInfo* initInfo);
+    virtual ErrorCode read(char* buff, int buffSize);
+    virtual ErrorCode write(const char* buff, int buffSize);
+    virtual ErrorCode write(char code);
+    virtual ErrorCode close();
 
 };
 

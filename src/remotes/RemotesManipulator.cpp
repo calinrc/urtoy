@@ -16,27 +16,27 @@
 
 using namespace std;
 
-RemotesManipulator* RemotesManipulator::sInstance = new RemotesManipulator ();
+RemotesManipulator* RemotesManipulator::sInstance = new RemotesManipulator();
 
-RemotesManipulator* RemotesManipulator::getInstance ()
+RemotesManipulator* RemotesManipulator::getInstance()
 {
     return sInstance;
 }
 
-std::map<long, std::string>& RemotesManipulator::getRemotesIdNameMap ()
+std::map<long, std::string>& RemotesManipulator::getRemotesIdNameMap()
 {
     return m_remotesIdNameMap;
 }
 
-void RemotesManipulator::load (string fileName)
+void RemotesManipulator::load(string fileName)
 {
-    ifstream read (fileName);
-    if (!read.fail ()) //no remote.txt file available so no remotes exists
+    ifstream read(fileName);
+    if (!read.fail()) //no remote.txt file available so no remotes exists
     {
         string line;
-        while (getline (read, line))
+        while (getline(read, line))
         {
-            istringstream iss (line);
+            istringstream iss(line);
             long remoteId;
             string remoteName;
             if (!(iss >> remoteId >> remoteName))
@@ -47,60 +47,60 @@ void RemotesManipulator::load (string fileName)
             m_remotesNameIdMap[remoteName] = remoteId;
         }
     }
-    read.close ();
+    read.close();
 }
 
-void RemotesManipulator::save (string fileName)
+void RemotesManipulator::save(string fileName)
 {
-    ofstream write (fileName);
-    if (!write.fail ()) //no remote.txt file available so no remotes exists
+    ofstream write(fileName);
+    if (!write.fail()) //no remote.txt file available so no remotes exists
     {
-        for (map<long, std::string>::iterator it = m_remotesIdNameMap.begin (); it != m_remotesIdNameMap.end (); it++)
+        for (map<long, std::string>::iterator it = m_remotesIdNameMap.begin(); it != m_remotesIdNameMap.end(); it++)
         {
             write << it->first << it->second << "\n";
         }
     }
-    write.close ();
+    write.close();
 }
 
-long RemotesManipulator::addRemote (string remoteName)
+long RemotesManipulator::addRemote(string remoteName)
 {
-    if (!this->containsRemote (remoteName))
+    if (!this->containsRemote(remoteName))
     {
-        return getRemoteId (remoteName);
+        return getRemoteId(remoteName);
     } else
     {
-        long nextId = rand ();
+        long nextId = rand();
         m_remotesNameIdMap[remoteName] = nextId;
         m_remotesIdNameMap[nextId] = remoteName;
     }
     return 0;
 }
 
-bool RemotesManipulator::containsRemote (string remoteName)
+bool RemotesManipulator::containsRemote(string remoteName)
 {
-    return m_remotesNameIdMap.find (remoteName) != m_remotesNameIdMap.end ();
+    return m_remotesNameIdMap.find(remoteName) != m_remotesNameIdMap.end();
 }
 
-long RemotesManipulator::getRemoteId (string remoteName)
+long RemotesManipulator::getRemoteId(string remoteName)
 {
     long retVal = -1;
-    map<string, long>::iterator it = m_remotesNameIdMap.find (remoteName);
-    if (it != m_remotesNameIdMap.end ())
+    map<string, long>::iterator it = m_remotesNameIdMap.find(remoteName);
+    if (it != m_remotesNameIdMap.end())
     {
         retVal = it->second;
     }
     return retVal;
 }
 
-bool RemotesManipulator::deleteRemote (string remoteName)
+bool RemotesManipulator::deleteRemote(string remoteName)
 {
-    map<string, long>::iterator it = m_remotesNameIdMap.find (remoteName);
-    if (it != m_remotesNameIdMap.end ())
+    map<string, long>::iterator it = m_remotesNameIdMap.find(remoteName);
+    if (it != m_remotesNameIdMap.end())
     {
         long foundId = it->second;
-        m_remotesNameIdMap.erase (it);
-        m_remotesIdNameMap.erase (foundId);
+        m_remotesNameIdMap.erase(it);
+        m_remotesIdNameMap.erase(foundId);
         return true;
     }
     return false;

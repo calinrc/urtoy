@@ -11,10 +11,10 @@
  ********************************************************************************************************************* */
 #include "InitInfo.h"
 
-InitInfo* InitInfo::s_instance = new InitInfo ();
+InitInfo* InitInfo::s_instance = new InitInfo();
 
-
-void InitInfo::release (){
+void InitInfo::release()
+{
     delete this;
     s_instance = NULL;
 }

@@ -18,25 +18,25 @@
 #include "Constants.h"
 #include "Transporter.h"
 
-class SocketTransporter: public Transporter
+class SocketTransporter : public Transporter
 {
 
 public:
-    SocketTransporter ();
-    ~SocketTransporter ();
+    SocketTransporter();
+    ~SocketTransporter();
 
-    virtual ErrorCode init (InitInfo* initInfo);
+    virtual ErrorCode init(InitInfo* initInfo);
 
-    virtual ErrorCode read (char* buff, int buffSize);
+    virtual ErrorCode read(char* buff, int buffSize);
 
-    virtual ErrorCode write (const char* buff, int buffSize);
+    virtual ErrorCode write(const char* buff, int buffSize);
 
-    virtual ErrorCode write (char code);
+    virtual ErrorCode write(char code);
 
-    virtual ErrorCode close ();
+    virtual ErrorCode close();
 
 private:
-    ErrorCode launch (InitInfo* initInfo);
+    ErrorCode launch(InitInfo* initInfo);
     InitInfo* m_initInfo;
     int m_socketHandler;
     int m_sockfd;

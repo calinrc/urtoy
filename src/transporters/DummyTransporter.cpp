@@ -12,35 +12,35 @@
 
 #include <transporters/DummyTransporter.h>
 
-DummyTransporter::DummyTransporter ()
+DummyTransporter::DummyTransporter()
 {
 }
 
-DummyTransporter::~DummyTransporter ()
+DummyTransporter::~DummyTransporter()
 {
 }
 
-ErrorCode DummyTransporter::init (InitInfo* initInfo)
-{
-    return EC_NOT_IMPLEMENTED;
-}
-
-ErrorCode DummyTransporter::read (char* buff, int buffSize)
+ErrorCode DummyTransporter::init(InitInfo* initInfo)
 {
     return EC_NOT_IMPLEMENTED;
 }
 
-ErrorCode DummyTransporter::write (const char* buff, int buffSize)
+ErrorCode DummyTransporter::read(char* buff, int buffSize)
 {
     return EC_NOT_IMPLEMENTED;
 }
 
-ErrorCode DummyTransporter::write (char code)
+ErrorCode DummyTransporter::write(const char* buff, int buffSize)
 {
     return EC_NOT_IMPLEMENTED;
 }
 
-ErrorCode DummyTransporter::close ()
+ErrorCode DummyTransporter::write(char code)
+{
+    return EC_NOT_IMPLEMENTED;
+}
+
+ErrorCode DummyTransporter::close()
 {
     return EC_NOT_IMPLEMENTED;
 }

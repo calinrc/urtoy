@@ -21,20 +21,20 @@ using namespace std;
 class RemotesManipulator
 {
 public:
-    void load (string fileName);
-    void save (string fileName);
-    long addRemote (string remoteName);
-    bool containsRemote (string remoteName);
-    long getRemoteId (string remoteName);
-    bool deleteRemote (string remoteName);
-    std::map<long, std::string>& getRemotesIdNameMap ();
-    static RemotesManipulator* getInstance ();
+    void load(string fileName);
+    void save(string fileName);
+    long addRemote(string remoteName);
+    bool containsRemote(string remoteName);
+    long getRemoteId(string remoteName);
+    bool deleteRemote(string remoteName);
+    std::map<long, std::string>& getRemotesIdNameMap();
+    static RemotesManipulator* getInstance();
 
 private:
-    RemotesManipulator ()
+    RemotesManipulator()
     {
     }
-    ~RemotesManipulator ()
+    ~RemotesManipulator()
     {
     }
 

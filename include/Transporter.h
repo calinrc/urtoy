@@ -20,22 +20,22 @@ class Transporter
 {
 
 public:
-    Transporter ()
+    Transporter()
     {
     }
-    virtual ~Transporter ()
+    virtual ~Transporter()
     {
     }
 
-    virtual ErrorCode init (InitInfo* initInfo) = 0;
+    virtual ErrorCode init(InitInfo* initInfo) = 0;
 
-    virtual ErrorCode read (char* buff, int buffSize) = 0;
+    virtual ErrorCode read(char* buff, int buffSize) = 0;
 
-    virtual ErrorCode write (const char* buff, int buffSize) = 0;
+    virtual ErrorCode write(const char* buff, int buffSize) = 0;
 
-    virtual ErrorCode write (char code) = 0;
+    virtual ErrorCode write(char code) = 0;
 
-    virtual ErrorCode close () = 0;
+    virtual ErrorCode close() = 0;
 
 };
 

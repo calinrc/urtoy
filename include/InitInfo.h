@@ -21,30 +21,30 @@ class InitInfo
 {
 public:
 
-    int getPort ()
+    int getPort()
     {
         return m_port;
     }
-    string& getUserName ()
+    string& getUserName()
     {
         return m_userName;
     }
-    string& getPassword ()
+    string& getPassword()
     {
         return m_password;
     }
 
-    void release ();
+    void release();
 
-    static InitInfo* getInstance ()
+    static InitInfo* getInstance()
     {
         return s_instance;
     }
 
 private:
     static InitInfo* s_instance;
-    InitInfo () :
-            m_port (1414), m_userName ("test"), m_password ("test")
+    InitInfo() :
+            m_port(1414), m_userName("test"), m_password("test")
     {
     }
 

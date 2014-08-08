@@ -16,13 +16,13 @@
 class Helpers
 {
 private:
-    Helpers ();
-    virtual ~Helpers ();
+    Helpers();
+    virtual ~Helpers();
 
 public:
-    static long bigEndienBytesToInt (char bytes[]);
+    static long bigEndienBytesToInt(char bytes[]);
 
-    static void intToBigEndienBytes (long val, char* bytes);
+    static void intToBigEndienBytes(long val, char* bytes);
 
     static const int MAX_MEM_ALLOC_SIZE = 5 * 1024 * 1024; // max 5MB allocation for this app
 };

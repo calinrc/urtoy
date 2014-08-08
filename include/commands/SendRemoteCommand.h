@@ -18,15 +18,15 @@
 class SendRemoteCommand : public Command
 {
 public:
-    SendRemoteCommand ();
-    virtual ~SendRemoteCommand ();
-    virtual CommandsId getCommandId ()
+    SendRemoteCommand();
+    virtual ~SendRemoteCommand();
+    virtual CommandsId getCommandId()
     {
         return SEND_REOTE_COMMAND;
     }
 
 protected:
-    virtual ErrorCode execute (TRANSPORTER_HANDLER streamHandler);
+    virtual ErrorCode execute(TRANSPORTER_HANDLER streamHandler);
 };
 
 #endif /* SENDCOMMAND_H_ */

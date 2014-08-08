@@ -19,30 +19,30 @@
 #include "transporters/SocketTransporter.h"
 #endif
 
-TransportFactory* TransportFactory::s_instance = new TransportFactory ();
+TransportFactory* TransportFactory::s_instance = new TransportFactory();
 
-TransportFactory::TransportFactory ()
+TransportFactory::TransportFactory()
 {
 }
-TransportFactory::~TransportFactory ()
+TransportFactory::~TransportFactory()
 {
 }
 
-void TransportFactory::release ()
+void TransportFactory::release()
 {
     delete this;
     s_instance = NULL;
 }
 
-Transporter* TransportFactory::getTransporter (InitInfo* initInfo)
+Transporter* TransportFactory::getTransporter(InitInfo* initInfo)
 {
     Transporter* transporter = NULL;
 #ifdef DUMMY_DEBUG
-    transporter = new DummyTransporter ();
+    transporter = new DummyTransporter();
 #else
     transporter = new SocketTransporter ();
 #endif
-    transporter->init (initInfo);
+    transporter->init(initInfo);
     return transporter;
 }
 
