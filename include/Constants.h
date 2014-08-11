@@ -34,6 +34,11 @@ enum ErrorCode
     EC_NOT_IMPLEMENTED
 };
 
+enum DeviceErrorCode
+{
+    DEC_OK, DEC_READ_FAIL, DEC_WRITE_FAIL, DEC_NOT_IMPLEMENTED
+};
+
 class Transporter;
 typedef Transporter* TRANSPORTER_HANDLER;
 

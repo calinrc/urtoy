@@ -13,6 +13,7 @@
 #include "remotes/RemotesManipulator.h"
 #include <fstream>
 #include <sstream>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -30,7 +31,7 @@ std::map<long, std::string>& RemotesManipulator::getRemotesIdNameMap()
 
 void RemotesManipulator::load(string fileName)
 {
-    ifstream read(fileName);
+    ifstream read(fileName.c_str());
     if (!read.fail()) //no remote.txt file available so no remotes exists
     {
         string line;
@@ -52,7 +53,7 @@ void RemotesManipulator::load(string fileName)
 
 void RemotesManipulator::save(string fileName)
 {
-    ofstream write(fileName);
+    ofstream write(fileName.c_str());
     if (!write.fail()) //no remote.txt file available so no remotes exists
     {
         for (map<long, std::string>::iterator it = m_remotesIdNameMap.begin(); it != m_remotesIdNameMap.end(); it++)
