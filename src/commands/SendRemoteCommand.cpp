@@ -23,6 +23,12 @@ SendRemoteCommand::~SendRemoteCommand()
 
 ErrorCode SendRemoteCommand::execute(TRANSPORTER_HANDLER streamHandler)
 {
-    return EC_NOT_IMPLEMENTED;
+    char buff[2]; // first byte identifies the remote if and second remote command id
+
+    ErrorCode eCode = streamHandler->read(buff, sizeof(buff));
+    if (eCode == EC_OK){
+
+    }
+    return eCode;
 }
 

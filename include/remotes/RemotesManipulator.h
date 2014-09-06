@@ -18,16 +18,18 @@
 
 using namespace std;
 
+class RemoteHandler;
+
 class RemotesManipulator
 {
 public:
     void load(string fileName);
     void save(string fileName);
-    long addRemote(string remoteName);
+    char addRemote(string remoteName);
     bool containsRemote(string remoteName);
-    long getRemoteId(string remoteName);
+    char getRemoteId(string remoteName);
     bool deleteRemote(string remoteName);
-    std::map<long, std::string>& getRemotesIdNameMap();
+    std::map<char, std::string>& getRemotesIdNameMap();
     static RemotesManipulator* getInstance();
 
 private:
@@ -38,8 +40,9 @@ private:
     {
     }
 
-    std::map<long, std::string> m_remotesIdNameMap;
-    std::map<std::string, long> m_remotesNameIdMap;
+    std::map<char, std::string> m_remotesIdNameMap;
+    std::map<std::string, char> m_remotesNameIdMap;
+    std::map<char, RemoteHandler*> m_remotesIdRemoteHandlerMap;
 
     static RemotesManipulator* sInstance;
 
