@@ -26,7 +26,8 @@ ErrorCode SendRemoteCommand::execute(TRANSPORTER_HANDLER streamHandler)
     char buff[2]; // first byte identifies the remote if and second remote command id
 
     ErrorCode eCode = streamHandler->read(buff, sizeof(buff));
-    if (eCode == EC_OK){
+    if (eCode == EC_OK)
+    {
 
     }
     return eCode;

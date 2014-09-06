@@ -58,7 +58,7 @@ void RemotesManipulator::save(string fileName)
     {
         for (map<char, std::string>::iterator it = m_remotesIdNameMap.begin(); it != m_remotesIdNameMap.end(); it++)
         {
-            write << (int)it->first << it->second << "\n";
+            write << (int) it->first << it->second << "\n";
         }
     }
     write.close();

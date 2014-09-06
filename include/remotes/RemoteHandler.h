@@ -12,12 +12,26 @@
 
 #ifndef REMOTEHANDLER_H_
 #define REMOTEHANDLER_H_
+#include <string>
+
+using namespace std;
 
 class RemoteHandler
 {
 public:
     RemoteHandler();
     virtual ~RemoteHandler();
+
+    virtual void getRemoteCommanBytes(int commandId, char** bytesBuff, size_t* bytes_Size);
+
+    virtual void release();
+
+private:
+
+    char m_remoteId;
+    string m_name;
+    char* lastCommandBytes;
+
 };
 
 #endif /* REMOTEHANDLER_H_ */

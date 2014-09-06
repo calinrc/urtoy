@@ -12,14 +12,25 @@
 
 #include <remotes/RemoteHandler.h>
 
-RemoteHandler::RemoteHandler()
+RemoteHandler::RemoteHandler() :
+        m_remoteId(0), lastCommandBytes(NULL)
 {
-    // TODO Auto-generated constructor stub
 
 }
 
 RemoteHandler::~RemoteHandler()
 {
-    // TODO Auto-generated destructor stub
 }
 
+void RemoteHandler::getRemoteCommanBytes(int commandId, char** bytesBuff, size_t* bytes_Size)
+{
+}
+
+void RemoteHandler::release()
+{
+    if (lastCommandBytes != NULL)
+    {
+        delete[] lastCommandBytes;
+        lastCommandBytes = NULL;
+    }
+}

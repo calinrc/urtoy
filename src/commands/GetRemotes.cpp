@@ -42,7 +42,7 @@ ErrorCode GetRemotes::execute(TRANSPORTER_HANDLER streamHandler)
     streamHandler->write(EC_OK);
     streamHandler->write(length);
     char number[4];
-    for (map<long, string>::iterator mapIt = remotesMap.begin(); mapIt != remotesMap.end(); mapIt++)
+    for (map<char, string>::iterator mapIt = remotesMap.begin(); mapIt != remotesMap.end(); mapIt++)
     {
         char remoteId = mapIt->first;
         string remoteName = mapIt->second;

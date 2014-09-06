@@ -22,7 +22,7 @@ int main()
 {
 
     std::string str("calin:");
-    long l = 1234;
+    //long l = 1234;
     int a = 10;
     stringstream ss;
     ss << a;

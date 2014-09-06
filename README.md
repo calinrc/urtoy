@@ -7,12 +7,22 @@ Description:
 URToy cpp project want to be the server side of an universal IR remote control tool.
 The initial version will use the usb IRToy device to record, and resend remotes commands
 
+Version
+-----------
+
+0.0.1  
+
 
 Notes:
 -----
 
+The project is in early stage of it, in the sense that can not be use it at all at this time.
+
+
+Communication protocol details:
+
  - Command IDs, remoteIds and remote commandIds  - are one byte value
- - int  values are sent as 32 bits big endien values
+ - int values are sent as 32 bits big endien values
  - server status value - one byte value 
  - String representation - 32 bits int length value + UTF-8 bytes
 
