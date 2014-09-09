@@ -15,11 +15,13 @@
 #include <ctime>
 #include <string>
 #include <sstream>
+#include <map>
 
 using namespace std;
 
 int main()
 {
+
 
     std::string str("calin:");
     //long l = 1234;

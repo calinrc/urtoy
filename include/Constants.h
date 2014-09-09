@@ -31,6 +31,7 @@ enum ErrorCode
     EC_IGNORED,
     EC_INVALID_LENGTH,
     EC_LOGIN_FAIL,
+    EC_DEVICE_COMMAND_FAIL,
     EC_NOT_IMPLEMENTED
 };
 
@@ -41,6 +42,8 @@ enum DeviceErrorCode
 
 class Transporter;
 typedef Transporter* TRANSPORTER_HANDLER;
+
+typedef char byte;
 
 #define REMOTES_FILE "remotes.txt"
 

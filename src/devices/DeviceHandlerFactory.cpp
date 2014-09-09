@@ -26,10 +26,9 @@ DeviceHandlerFactory::~DeviceHandlerFactory()
 {
 }
 
-DeviceHandler* getHandler(DeviceInitInfo* initInfo)
+DeviceHandler* DeviceHandlerFactory::getHandler(DeviceInitInfo* initInfo)
 {
     DeviceHandler* retVal = new IRToyDeviceHandler();
     retVal->init(initInfo);
     return retVal;
 }
-

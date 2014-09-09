@@ -13,6 +13,7 @@
 #ifndef REMOTEHANDLER_H_
 #define REMOTEHANDLER_H_
 #include <string>
+#include "Constants.h"
 
 using namespace std;
 
@@ -22,15 +23,19 @@ public:
     RemoteHandler();
     virtual ~RemoteHandler();
 
-    virtual void getRemoteCommanBytes(int commandId, char** bytesBuff, size_t* bytes_Size);
+    virtual bool isInit();
+
+    virtual ErrorCode init();
+
+    virtual ErrorCode getRemoteCommanBytes(int commandId, char** bytesBuff, size_t* bytes_Size);
 
     virtual void release();
 
 private:
-
-    char m_remoteId;
+    byte m_remoteId;
     string m_name;
-    char* lastCommandBytes;
+    byte* m_lastCommandBytes;
+    bool m_wasInitialized;
 
 };
 

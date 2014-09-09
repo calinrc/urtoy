@@ -11,6 +11,11 @@
  ********************************************************************************************************************* */
 
 #include "commands/SendRemoteCommand.h"
+#include "remotes/RemotesManipulator.h"
+#include "remotes/RemoteHandler.h"
+#include "devices/DeviceHandlerFactory.h"
+#include "devices/DeviceHandler.h"
+#include "devices/DeviceInitInfo.h"
 
 SendRemoteCommand::SendRemoteCommand()
 {
@@ -23,12 +28,23 @@ SendRemoteCommand::~SendRemoteCommand()
 
 ErrorCode SendRemoteCommand::execute(TRANSPORTER_HANDLER streamHandler)
 {
-    char buff[2]; // first byte identifies the remote if and second remote command id
+    byte buff[2]; // first byte identifies the remote id and second remote command id
 
     ErrorCode eCode = streamHandler->read(buff, sizeof(buff));
     if (eCode == EC_OK)
     {
+        RemoteHandler* remoteHandler = RemotesManipulator::getInstance()->getRemoteHandler(buff[0]);
+        if (remoteHandler != NULL){
+            char* buffLocation;
+            size_t buffSize;
+            eCode = remoteHandler->getRemoteCommanBytes(buff[1], &buffLocation, &buffSize);
+            if (eCode == EC_OK){
+                //TODO update this initInfo with real one
+                DeviceInitInfo initInfo;
 
+                DeviceHandlerFactory::getInstance()->getHandler(&initInfo);
+            }
+        }
     }
     return eCode;
 }

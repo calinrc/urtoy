@@ -13,7 +13,7 @@
 #include <remotes/RemoteHandler.h>
 
 RemoteHandler::RemoteHandler() :
-        m_remoteId(0), lastCommandBytes(NULL)
+        m_remoteId(0), m_lastCommandBytes(NULL), m_wasInitialized(false)
 {
 
 }
@@ -22,15 +22,27 @@ RemoteHandler::~RemoteHandler()
 {
 }
 
-void RemoteHandler::getRemoteCommanBytes(int commandId, char** bytesBuff, size_t* bytes_Size)
+ErrorCode RemoteHandler::getRemoteCommanBytes(int commandId, char** bytesBuff, size_t* bytes_Size)
 {
+    return EC_NOT_IMPLEMENTED;
+}
+
+bool RemoteHandler::isInit()
+{
+    return m_wasInitialized;
+}
+
+ErrorCode RemoteHandler::init()
+{
+    return EC_NOT_IMPLEMENTED;
+//TODO implement this
 }
 
 void RemoteHandler::release()
 {
-    if (lastCommandBytes != NULL)
+    if (m_lastCommandBytes != NULL)
     {
-        delete[] lastCommandBytes;
-        lastCommandBytes = NULL;
+        delete[] m_lastCommandBytes;
+        m_lastCommandBytes = NULL;
     }
 }

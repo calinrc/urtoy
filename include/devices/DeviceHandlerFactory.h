@@ -20,7 +20,11 @@ class DeviceHandlerFactory
 {
 public:
 
-    static DeviceHandlerFactory* getInstance();
+    static DeviceHandlerFactory* getInstance()
+    {
+        return s_instance;
+    }
+
     DeviceHandler* getHandler(DeviceInitInfo* initInfo);
 
 private:

@@ -15,6 +15,7 @@
 
 #include <map>
 #include <string>
+#include "Constants.h"
 
 using namespace std;
 
@@ -25,11 +26,14 @@ class RemotesManipulator
 public:
     void load(string fileName);
     void save(string fileName);
-    char addRemote(string remoteName);
+    byte addRemote(string remoteName);
     bool containsRemote(string remoteName);
-    char getRemoteId(string remoteName);
+    byte getRemoteId(string remoteName);
     bool deleteRemote(string remoteName);
-    std::map<char, std::string>& getRemotesIdNameMap();
+    std::map<byte, std::string>& getRemotesIdNameMap();
+    RemoteHandler* getRemoteHandler(byte remoteId);
+
+
     static RemotesManipulator* getInstance();
 
 private:
@@ -40,9 +44,9 @@ private:
     {
     }
 
-    std::map<char, std::string> m_remotesIdNameMap;
-    std::map<std::string, char> m_remotesNameIdMap;
-    std::map<char, RemoteHandler*> m_remotesIdRemoteHandlerMap;
+    std::map<byte, std::string> m_remotesIdNameMap;
+    std::map<std::string, byte> m_remotesNameIdMap;
+    std::map<byte, RemoteHandler*> m_remotesIdRemoteHandlerMap;
 
     static RemotesManipulator* sInstance;
 
