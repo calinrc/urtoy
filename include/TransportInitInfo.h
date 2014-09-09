@@ -14,12 +14,15 @@
 #define INITINFO_H_
 
 #include <string>
+#include "Config.h"
 
 using namespace std;
 
-class InitInfo
+class TransportInitInfo
 {
 public:
+
+    friend class Config;
 
     int getPort()
     {
@@ -34,17 +37,14 @@ public:
         return m_password;
     }
 
-    void release();
-
-    static InitInfo* getInstance()
+private:
+    TransportInitInfo() :
+            m_port(1414), m_userName("test"), m_password("test")
     {
-        return s_instance;
     }
 
-private:
-    static InitInfo* s_instance;
-    InitInfo() :
-            m_port(1414), m_userName("test"), m_password("test")
+    TransportInitInfo(int port, string username, string password) :
+            m_port(port), m_userName(username), m_password(password)
     {
     }
 

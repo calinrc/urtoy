@@ -1,6 +1,6 @@
 /*
- *    DeviceHandlerFactory.h file written and maintained by Calin Cocan
- *    Created on: Aug 12, 2014
+ *    Config.h file written and maintained by Calin Cocan
+ *    Created on: Sep 9, 2014
  *
  * This work is free: you can redistribute it and/or modify it under the terms of Apache License Version 2.0
  *
@@ -10,29 +10,38 @@
 
  ********************************************************************************************************************* */
 
-#ifndef DEVICEHANDLERFACTORY_H_
-#define DEVICEHANDLERFACTORY_H_
+#ifndef CONFIG_H_
+#define CONFIG_H_
 
-class DeviceHandler;
+#include <string>
+#include <map>
+
+using namespace std;
+
 class DeviceInitInfo;
+class TransportInitInfo;
 
-class DeviceHandlerFactory
+class Config
 {
 public:
 
-    static DeviceHandlerFactory* getInstance()
-    {
-        return s_instance;
-    }
+    static Config* getInstance();
 
-    DeviceHandler* getHandler(DeviceInitInfo* initInfo);
+    void load(string filePath);
+    DeviceInitInfo* getDeviceInitInfo();
+    TransportInitInfo* getTransportInitInfo();
+    map<string, string>& getAllProps();
 
 private:
-    DeviceHandlerFactory();
-    virtual ~DeviceHandlerFactory();
-    DeviceHandler* m_dh;
+    Config();
+    virtual ~Config();
 
-    static DeviceHandlerFactory* s_instance;
+    DeviceInitInfo* m_devInitInfo;
+    TransportInitInfo* m_transportInitInfo;
+    map<string, string> m_props;
+
+    static Config* s_instance;
+
 };
 
-#endif /* DEVICEHANDLERFACTORY_H_ */
+#endif /* CONFIG_H_ */

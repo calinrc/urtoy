@@ -14,23 +14,35 @@
 #define DEVICEINITINFO_H_
 
 #include <string>
+#include "Config.h"
 
 using namespace std;
 class DeviceInitInfo
 {
+    friend class Config;
 public:
-    DeviceInitInfo()
+
+    string getConnectionURI()
+    {
+        return m_uri;
+    }
+
+private:
+
+    DeviceInitInfo() :
+            m_uri("/dev/com123")
     {
     }
-    ;
+
+    DeviceInitInfo(string uri) :
+            m_uri(uri)
+    {
+    }
     virtual ~DeviceInitInfo()
     {
     }
-    ;
-    string getConnectionURI()
-    {
-        return string("/dev/com");
-    }
+
+    string m_uri;
 
 };
 

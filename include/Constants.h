@@ -40,6 +40,11 @@ enum DeviceErrorCode
     DEC_OK, DEC_READ_FAIL, DEC_WRITE_FAIL, DEC_NOT_IMPLEMENTED
 };
 
+#define PORT "port"
+#define USERNAME "username"
+#define PASSWORD "password"
+#define DEVICEURI "deviceuri"
+
 class Transporter;
 typedef Transporter* TRANSPORTER_HANDLER;
 

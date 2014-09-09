@@ -31,7 +31,7 @@ SocketTransporter::~SocketTransporter()
     }
 }
 
-ErrorCode SocketTransporter::init(InitInfo* initInfo)
+ErrorCode SocketTransporter::init(TransportInitInfo* initInfo)
 {
     this->m_initInfo = initInfo;
     struct sockaddr_in serv_addr;
@@ -64,7 +64,7 @@ ErrorCode SocketTransporter::init(InitInfo* initInfo)
     return this->launch(initInfo);
 }
 
-ErrorCode SocketTransporter::launch(InitInfo* initInfo)
+ErrorCode SocketTransporter::launch(TransportInitInfo* initInfo)
 {
     //char buffer[256];
     //int n = 0;

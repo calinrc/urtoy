@@ -21,7 +21,7 @@ class TransportFactory
 public:
     void release();
 
-    Transporter* getTransporter(InitInfo* initInfo);
+    Transporter* getTransporter(TransportInitInfo* initInfo);
 
 private:
     TransportFactory();

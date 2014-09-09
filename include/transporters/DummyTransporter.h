@@ -20,7 +20,7 @@ class DummyTransporter : public Transporter
 public:
     DummyTransporter();
     virtual ~DummyTransporter();
-    virtual ErrorCode init(InitInfo* initInfo);
+    virtual ErrorCode init(TransportInitInfo* initInfo);
     virtual ErrorCode read(char* buff, int buffSize);
     virtual ErrorCode write(const char* buff, int buffSize);
     virtual ErrorCode write(char code);

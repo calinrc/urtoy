@@ -20,7 +20,7 @@ DummyTransporter::~DummyTransporter()
 {
 }
 
-ErrorCode DummyTransporter::init(InitInfo* initInfo)
+ErrorCode DummyTransporter::init(TransportInitInfo* initInfo)
 {
     return EC_NOT_IMPLEMENTED;
 }

@@ -39,10 +39,8 @@ ErrorCode SendRemoteCommand::execute(TRANSPORTER_HANDLER streamHandler)
             size_t buffSize;
             eCode = remoteHandler->getRemoteCommanBytes(buff[1], &buffLocation, &buffSize);
             if (eCode == EC_OK){
-                //TODO update this initInfo with real one
-                DeviceInitInfo initInfo;
-
-                DeviceHandlerFactory::getInstance()->getHandler(&initInfo);
+                DeviceHandler* dh = DeviceHandlerFactory::getInstance()->getHandler(Config::getInstance()->getDeviceInitInfo());
+                dh->write(buffLocation, buffSize);
             }
         }
     }

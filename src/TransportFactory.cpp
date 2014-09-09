@@ -34,7 +34,7 @@ void TransportFactory::release()
     s_instance = NULL;
 }
 
-Transporter* TransportFactory::getTransporter(InitInfo* initInfo)
+Transporter* TransportFactory::getTransporter(TransportInitInfo* initInfo)
 {
     Transporter* transporter = NULL;
 #ifdef DUMMY_DEBUG

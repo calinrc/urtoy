@@ -17,7 +17,8 @@
 
 DeviceHandlerFactory* DeviceHandlerFactory::s_instance = new DeviceHandlerFactory();
 
-DeviceHandlerFactory::DeviceHandlerFactory()
+DeviceHandlerFactory::DeviceHandlerFactory() :
+        m_dh(NULL)
 {
 
 }
@@ -28,7 +29,10 @@ DeviceHandlerFactory::~DeviceHandlerFactory()
 
 DeviceHandler* DeviceHandlerFactory::getHandler(DeviceInitInfo* initInfo)
 {
-    DeviceHandler* retVal = new IRToyDeviceHandler();
-    retVal->init(initInfo);
-    return retVal;
+    if (m_dh == NULL)
+    {
+        m_dh = new IRToyDeviceHandler();
+        m_dh->init(initInfo);
+    }
+    return m_dh;
 }

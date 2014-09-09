@@ -13,7 +13,7 @@
 #ifndef SOCKETEXECUTOR_H_
 #define SOCKETEXECUTOR_H_
 
-#include "InitInfo.h"
+#include "TransportInitInfo.h"
 #include <netinet/in.h>
 #include "Constants.h"
 #include "Transporter.h"
@@ -25,7 +25,7 @@ public:
     SocketTransporter();
     ~SocketTransporter();
 
-    virtual ErrorCode init(InitInfo* initInfo);
+    virtual ErrorCode init(TransportInitInfo* initInfo);
 
     virtual ErrorCode read(char* buff, int buffSize);
 
@@ -36,8 +36,8 @@ public:
     virtual ErrorCode close();
 
 private:
-    ErrorCode launch(InitInfo* initInfo);
-    InitInfo* m_initInfo;
+    ErrorCode launch(TransportInitInfo* initInfo);
+    TransportInitInfo* m_initInfo;
     int m_socketHandler;
     int m_sockfd;
     struct sockaddr_in m_cli_addr;

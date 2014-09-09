@@ -16,7 +16,7 @@
 #include <algorithm>
 #include "Transporter.h"
 #include "Helpers.h"
-#include "InitInfo.h"
+#include "TransportInitInfo.h"
 #include <sstream>
 
 using namespace std;
@@ -44,7 +44,7 @@ string generate_random_string(size_t n)
     return std::string(rbuf, n);
 }
 
-static string getResultString(InitInfo* initInfo, string nonce)
+static string getResultString(TransportInitInfo* initInfo, string nonce)
 {
     stringstream ss;
     ss << initInfo->getUserName();
@@ -82,7 +82,7 @@ ErrorCode Login::execute(TRANSPORTER_HANDLER streamHandler)
             {
                 string credentials(buff, size);
                 delete[] buff;
-                if (credentials == getResultString(InitInfo::getInstance(), nonce))
+                if (credentials == getResultString(Config::getInstance()->getTransportInitInfo(), nonce))
                 {
                     streamHandler->write(EC_OK);
                     return EC_OK;

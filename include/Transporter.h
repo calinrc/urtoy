@@ -14,7 +14,7 @@
 #define TRANSPORTER_H_
 
 #include "Constants.h"
-class InitInfo;
+class TransportInitInfo;
 
 class Transporter
 {
@@ -27,7 +27,7 @@ public:
     {
     }
 
-    virtual ErrorCode init(InitInfo* initInfo) = 0;
+    virtual ErrorCode init(TransportInitInfo* initInfo) = 0;
 
     virtual ErrorCode read(char* buff, int buffSize) = 0;
 
