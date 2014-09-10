@@ -20,6 +20,7 @@ using namespace std;
 
 class DeviceInitInfo;
 class TransportInitInfo;
+class PathResolver;
 
 class Config
 {
@@ -30,7 +31,11 @@ public:
     void load(string filePath);
     DeviceInitInfo* getDeviceInitInfo();
     TransportInitInfo* getTransportInitInfo();
+    PathResolver* getPathResolver();
     map<string, string>& getAllProps();
+    string getProp(string key);
+    string getProp(string key, string defaultValue);
+    int getPropAsInt(string key);
 
 private:
     Config();
@@ -38,6 +43,7 @@ private:
 
     DeviceInitInfo* m_devInitInfo;
     TransportInitInfo* m_transportInitInfo;
+    PathResolver* m_pathResolver;
     map<string, string> m_props;
 
     static Config* s_instance;

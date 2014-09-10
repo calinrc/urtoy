@@ -36,7 +36,7 @@ ErrorCode GetRemotes::execute(TRANSPORTER_HANDLER streamHandler)
     char length = 0;
     map<char, std::string> remotesMap;
     RemotesManipulator* rm = RemotesManipulator::getInstance();
-    rm->load(REMOTES_FILE);
+    rm->load(Config::getInstance()->getPathResolver()->resolve(REMOTES_FILE));
     remotesMap = rm->getRemotesIdNameMap();
     length = remotesMap.size();
     streamHandler->write(EC_OK);

@@ -16,12 +16,15 @@
 #include <string>
 #include <sstream>
 #include <map>
+#include "Config.h"
+#include "Constants.h"
 
 using namespace std;
 
 int main()
 {
 
+    Config::getInstance()->load(CONFIG_PROPERTIES);
 
     std::string str("calin:");
     //long l = 1234;

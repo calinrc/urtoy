@@ -15,17 +15,31 @@
 #include "Config.h"
 #include "TransportInitInfo.h"
 #include "devices/DeviceInitInfo.h"
+#include "PathResolver.h"
 #include "Constants.h"
 
 Config* Config::s_instance = new Config();
 
 Config::Config() :
-        m_devInitInfo(NULL), m_transportInitInfo(NULL)
+        m_devInitInfo(NULL), m_transportInitInfo(NULL), m_pathResolver(NULL)
 {
 }
 
 Config::~Config()
 {
+    if (m_devInitInfo != NULL)
+    {
+        delete m_devInitInfo;
+    }
+    if (m_transportInitInfo != NULL)
+    {
+        delete m_transportInitInfo;
+    }
+    if (m_pathResolver != NULL)
+    {
+        delete m_pathResolver;
+    }
+
 }
 
 Config* Config::getInstance()
@@ -45,6 +59,11 @@ void Config::load(string path)
         delete m_transportInitInfo;
         m_transportInitInfo = NULL;
     }
+    if (m_pathResolver != NULL)
+    {
+        delete m_pathResolver;
+        m_pathResolver = NULL;
+    }
 
     ifstream read(path.c_str());
     if (!read.fail()) //no config.properties file available
@@ -63,6 +82,7 @@ void Config::load(string path)
         }
     }
     read.close();
+
     string deviceuri = m_props[DEVICEURI];
     m_devInitInfo = deviceuri.empty() ? new DeviceInitInfo() : new DeviceInitInfo(deviceuri);
 
@@ -73,12 +93,36 @@ void Config::load(string path)
     m_transportInitInfo =
             (portstr.empty() || username.empty() || password.empty()) ?
                     new TransportInitInfo() : new TransportInitInfo(atoi(portstr.c_str()), username, password);
+    m_pathResolver = new PathResolver(getProp(ROOTPATH, "."));
 
 }
 
 map<string, string> &Config::getAllProps()
 {
     return m_props;
+}
+
+string Config::getProp(string key)
+{
+    return m_props[key];
+}
+
+string Config::getProp(string key, string defaultValue)
+{
+    string val = m_props[key];
+    return !val.empty() ? val : defaultValue;
+}
+
+int Config::getPropAsInt(string key)
+{
+    string val = m_props[key];
+    if (!val.empty())
+    {
+        return atoi(val.c_str());
+    } else
+    {
+        return -1;
+    }
 }
 
 DeviceInitInfo * Config::getDeviceInitInfo()
@@ -89,5 +133,10 @@ DeviceInitInfo * Config::getDeviceInitInfo()
 TransportInitInfo * Config::getTransportInitInfo()
 {
     return m_transportInitInfo;
+}
+
+PathResolver* Config::getPathResolver()
+{
+    return m_pathResolver;
 }
 

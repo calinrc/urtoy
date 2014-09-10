@@ -69,7 +69,8 @@ Commands:
 
 
     <AppFolder>
-        \config.properties (config file contaning key / value pair e.g. username, password, port etc )
+        \config.properties (config file contaning key / value pair e.g. username, password, port etc. 
+        		This can be located in other place than remotes structure, these being specified relatively to rootpath value from config file )
         \remotes.txt (each line contains one remote - remoteId as long value in string + remote name )
         \remoteId as long value in string folder
             \regions.bin file

@@ -44,6 +44,7 @@ enum DeviceErrorCode
 #define USERNAME "username"
 #define PASSWORD "password"
 #define DEVICEURI "deviceuri"
+#define ROOTPATH "rootpath"
 
 class Transporter;
 typedef Transporter* TRANSPORTER_HANDLER;
@@ -51,5 +52,7 @@ typedef Transporter* TRANSPORTER_HANDLER;
 typedef char byte;
 
 #define REMOTES_FILE "remotes.txt"
+#define CONFIG_PROPERTIES "config.properties"
+
 
 #endif /* CONSTANTS_H_ */

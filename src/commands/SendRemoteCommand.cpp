@@ -40,7 +40,10 @@ ErrorCode SendRemoteCommand::execute(TRANSPORTER_HANDLER streamHandler)
             eCode = remoteHandler->getRemoteCommanBytes(buff[1], &buffLocation, &buffSize);
             if (eCode == EC_OK){
                 DeviceHandler* dh = DeviceHandlerFactory::getInstance()->getHandler(Config::getInstance()->getDeviceInitInfo());
-                dh->write(buffLocation, buffSize);
+                DeviceErrorCode dec = dh->write(buffLocation, buffSize);
+                if (dec != DEC_OK){
+                    eCode = EC_DEVICE_COMMAND_FAIL;
+                }
             }
         }
     }
