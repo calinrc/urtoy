@@ -17,8 +17,9 @@
 #include <fstream>
 #include <sstream>
 #include <map>
-
+#include "Config.h"
 #include "Helpers.h"
+#include "PathResolver.h"
 
 using namespace std;
 

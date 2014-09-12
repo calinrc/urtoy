@@ -74,11 +74,27 @@ byte RemotesManipulator::addRemote(string remoteName)
         return getRemoteId(remoteName);
     } else
     {
-        int nextId = rand();
-        m_remotesNameIdMap[remoteName] = nextId % 256;
-        m_remotesIdNameMap[nextId] = remoteName;
+        int nextId = 256;
+        for (int i = 0; i < 256; i++)
+        {
+            if (m_remotesIdNameMap[(byte)i].empty())
+            {
+                nextId = i;
+                break; //newId found
+            }
+        }
+        if (nextId == 256)
+        {
+            return -1; // next new remote ID was not found
+        } else
+        {
+            m_remotesIdRemoteHandlerMap[nextId] = new RemoteHandler();
+            m_remotesNameIdMap[remoteName] = nextId;
+            m_remotesIdNameMap[nextId] = remoteName;
+            return nextId;
+        }
+
     }
-    return 0;
 }
 
 bool RemotesManipulator::containsRemote(string remoteName)

@@ -11,6 +11,9 @@
  ********************************************************************************************************************* */
 
 #include "commands/NewRemote.h"
+#include <string>
+#include "Helpers.h"
+#include "remotes/RemotesManipulator.h"
 
 NewRemote::NewRemote()
 {
@@ -23,6 +26,33 @@ NewRemote::~NewRemote()
 
 ErrorCode NewRemote::execute(TRANSPORTER_HANDLER streamHandler)
 {
-    return EC_NOT_IMPLEMENTED;
+    byte buff[4]; // first byte identifies the remote id and second remote command id
+
+    ErrorCode eCode = streamHandler->read(buff, sizeof(buff));
+    if (eCode == EC_OK)
+    {
+        int stringLenght = Helpers::bigEndienBytesToInt(buff);
+
+        byte* strBuff = new byte[stringLenght + 1];
+        strBuff[stringLenght] = '\0';
+        eCode = streamHandler->read(strBuff, stringLenght);
+        std::string strName(strBuff);
+        delete[] strBuff;
+        if (eCode == EC_OK)
+        {
+            byte remoteId = RemotesManipulator::getInstance()->addRemote(strName);
+            if (remoteId < 0)
+            {
+                eCode = EC_DEVICE_COMMAND_FAIL;
+                streamHandler->write(eCode);
+            } else
+            {
+                streamHandler->write(eCode);
+                streamHandler->write(remoteId);
+            }
+        }
+
+    }
+    return eCode;
 }
 

@@ -5,7 +5,7 @@ Description:
 ------------
 
 URToy cpp project want to be the server side of an universal IR remote control tool.
-The initial version will use the usb IRToy device to record, and resend remotes commands
+The initial version will use the usb IRToy device to record, and resend remotes commands previously recorded by the same device 
 
 Version
 -----------
@@ -49,8 +49,8 @@ Commands:
 		* Server respods status 
 
 ### NewRemote
-		* Client sends command id + remoteId(byte) + name (String)
-		* Server creates a new remote and its name and responds status 
+		* Client sends command id + name (String)
+		* Server creates a new remote based on its name and send back response status and remote Id information 
 
 ### RecordSignal
 		* Client sends command id + remoteID (byte) + remote commandId(byte)

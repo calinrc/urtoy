@@ -45,8 +45,11 @@ ErrorCode SendRemoteCommand::execute(TRANSPORTER_HANDLER streamHandler)
                     eCode = EC_DEVICE_COMMAND_FAIL;
                 }
             }
+        }else{
+            eCode = EC_DEVICE_COMMAND_FAIL;
         }
     }
+    streamHandler->write(eCode);
     return eCode;
 }
 
