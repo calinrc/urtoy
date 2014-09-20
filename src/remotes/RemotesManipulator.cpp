@@ -31,7 +31,7 @@ std::map<byte, std::string>& RemotesManipulator::getRemotesIdNameMap()
     return m_remotesIdNameMap;
 }
 
-void RemotesManipulator::load(string fileName)
+void RemotesManipulator::loadRemotes(string fileName)
 {
     ifstream read(fileName.c_str());
     if (!read.fail()) //no remote.txt file available so no remotes exists
@@ -54,7 +54,7 @@ void RemotesManipulator::load(string fileName)
     read.close();
 }
 
-void RemotesManipulator::save(string fileName)
+void RemotesManipulator::saveRemotes(string fileName)
 {
     ofstream write(fileName.c_str());
     if (!write.fail()) //no remote.txt file available so no remotes exists

@@ -24,8 +24,8 @@ class RemoteHandler;
 class RemotesManipulator
 {
 public:
-    void load(string fileName);
-    void save(string fileName);
+    void loadRemotes(string fileName);
+    void saveRemotes(string fileName);
     byte addRemote(string remoteName);
     bool containsRemote(string remoteName);
     byte getRemoteId(string remoteName);

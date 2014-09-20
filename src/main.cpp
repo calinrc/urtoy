@@ -33,7 +33,7 @@ int main()
     ss << a;
     str += ss.str();
 
-    printf(str.c_str());
+    printf("%s", str.c_str());
     srand(time(NULL));
     return 0;
 }
