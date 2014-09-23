@@ -13,6 +13,8 @@
 #ifndef HELPERS_H_
 #define HELPERS_H_
 
+#include "Constants.h"
+
 class Helpers
 {
 private:
@@ -20,9 +22,9 @@ private:
     virtual ~Helpers();
 
 public:
-    static long bigEndienBytesToInt(char bytes[]);
+    static long bigEndienBytesToInt(byte* bytes);
 
-    static void intToBigEndienBytes(long val, char* bytes);
+    static void intToBigEndienBytes(long val, byte* bytes);
 
     static const int MAX_MEM_ALLOC_SIZE = 5 * 1024 * 1024; // max 5MB allocation for this app
 };

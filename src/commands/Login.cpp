@@ -64,32 +64,56 @@ static string getResultString(TransportInitInfo* initInfo, string nonce)
 ErrorCode Login::execute(TRANSPORTER_HANDLER streamHandler)
 {
     ErrorCode eCode = EC_OK;
-    string nonce = generate_random_string(rand() % 20);
-    eCode = streamHandler->write(nonce.c_str(), nonce.size());
+    byte protocolRead[7];
+    streamHandler->read(protocolRead, sizeof(protocolRead));
+    string protoName(URTOY);
+
+    for (size_t i = 0; i < protoName.length(); i++)
+    {
+        if (protocolRead[i] != protoName[i])
+        {
+            eCode = EC_UNSUPPORTED_FORMAT;
+            break;
+        }
+    }
     if (eCode == EC_OK)
     {
-        char intBytes[4];
-        streamHandler->read(intBytes, sizeof(intBytes));
-        int size = Helpers::bigEndienBytesToInt(intBytes);
-        if (size < 0 || size > Helpers::MAX_MEM_ALLOC_SIZE)
+        if (protocolRead[5] != VER_MAJOR || protocolRead[6] != VER_MINOR)
         {
-            return EC_INVALID_LENGTH;
-        } else
+            eCode = EC_UNSUPPORTED_VERSION;
+        }
+    }
+
+    streamHandler->write(eCode);
+    if (eCode == EC_OK)
+    {
+        string nonce = generate_random_string(rand() % 20);
+        eCode = streamHandler->write(nonce.c_str(), nonce.size());
+        if (eCode == EC_OK)
         {
-            char* buff = new char[size];
-            eCode = streamHandler->read(buff, size);
-            if (eCode == EC_OK)
+            char intBytes[4];
+            streamHandler->read(intBytes, sizeof(intBytes));
+            int size = Helpers::bigEndienBytesToInt(intBytes);
+            if (size < 0 || size > Helpers::MAX_MEM_ALLOC_SIZE)
             {
-                string credentials(buff, size);
-                delete[] buff;
-                if (credentials == getResultString(Config::getInstance()->getTransportInitInfo(), nonce))
+                return EC_INVALID_LENGTH;
+            } else
+            {
+                char* buff = new char[size];
+                eCode = streamHandler->read(buff, size);
+                if (eCode == EC_OK)
                 {
-                    streamHandler->write(EC_OK);
-                    return EC_OK;
-                } else
-                {
-                    streamHandler->write(EC_LOGIN_FAIL);
-                    return EC_LOGIN_FAIL;
+                    string credentials(buff, size);
+                    delete[] buff;
+                    if (credentials == getResultString(Config::getInstance()->getTransportInitInfo(), nonce))
+                    {
+                        streamHandler->write(EC_OK);
+                        return EC_OK;
+                    } else
+                    {
+                        streamHandler->write(EC_LOGIN_FAIL);
+                        return EC_LOGIN_FAIL;
+                    }
                 }
             }
         }

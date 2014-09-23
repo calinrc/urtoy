@@ -22,11 +22,6 @@ RemoteHandler::~RemoteHandler()
 {
 }
 
-ErrorCode RemoteHandler::getRemoteCommanBytes(int commandId, char** bytesBuff, size_t* bytes_Size)
-{
-    return EC_NOT_IMPLEMENTED;
-}
-
 bool RemoteHandler::isInit()
 {
     return m_wasInitialized;
@@ -35,7 +30,47 @@ bool RemoteHandler::isInit()
 ErrorCode RemoteHandler::init()
 {
     return EC_NOT_IMPLEMENTED;
-//TODO implement this
+}
+
+ErrorCode RemoteHandler::getRemoteCommanBytes(int commandId, char** bytesBuff, size_t* bytes_Size)
+{
+    return EC_NOT_IMPLEMENTED;
+}
+
+ErrorCode RemoteHandler::storeRemoteCommandBytes(int commandId, byte* bytesBuff, size_t bytes_Size)
+{
+
+    return EC_NOT_IMPLEMENTED;
+}
+
+ErrorCode RemoteHandler::storeRemoteMetaBytes(byte* bytesBuff, size_t bytes_Size)
+{
+    return EC_NOT_IMPLEMENTED;
+}
+
+ErrorCode RemoteHandler::storeRemoteImageBytes(byte* bytesBuff, size_t bytes_Size)
+{
+    return EC_NOT_IMPLEMENTED;
+}
+
+ErrorCode RemoteHandler::getRemoteMetaBytes(byte** bytesBuff, size_t* bytes_Size)
+{
+    return EC_NOT_IMPLEMENTED;
+}
+
+ErrorCode RemoteHandler::getRemoteImageBytes(byte** bytesBuff, size_t* bytes_Size)
+{
+    return EC_NOT_IMPLEMENTED;
+}
+
+ErrorCode RemoteHandler::releaseMeta()
+{
+    return EC_NOT_IMPLEMENTED;
+}
+
+ErrorCode RemoteHandler::releaseImage()
+{
+    return EC_NOT_IMPLEMENTED;
 }
 
 void RemoteHandler::release()

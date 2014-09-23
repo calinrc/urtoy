@@ -30,7 +30,7 @@ public:
     virtual ErrorCode init(TransportInitInfo* initInfo) = 0;
 
     /* The read convention is that callers reads exactly the number of bytes specific in buffSize.
-     * If the stream has lower number of bytes than the caller will wait untill the expected number of bytes is received*/
+     * If the stream has lower number of bytes than the caller will wait until the expected number of bytes is received*/
     virtual ErrorCode read(char* buff, int buffSize) = 0;
 
     /*The write convention is that the transporter writes all the bytes specified in buffSize value*/

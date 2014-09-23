@@ -11,6 +11,12 @@
  ********************************************************************************************************************* */
 
 #include "commands/LoadRemoteMetaInf.h"
+#include "remotes/RemotesManipulator.h"
+#include "remotes/RemoteHandler.h"
+#include "devices/DeviceHandlerFactory.h"
+#include "devices/DeviceHandler.h"
+#include "devices/DeviceInitInfo.h"
+#include "Helpers.h"
 
 LoadRemoteMetaInf::LoadRemoteMetaInf()
 {
@@ -23,5 +29,46 @@ LoadRemoteMetaInf::~LoadRemoteMetaInf()
 
 ErrorCode LoadRemoteMetaInf::execute(TRANSPORTER_HANDLER streamHandler)
 {
-    return EC_NOT_IMPLEMENTED;
+    byte buff[1]; // first byte identifies the remote id
+    byte numberBuff[8];
+    ErrorCode eCode = streamHandler->read(buff, sizeof(buff));
+    ErrorCode tempECode = EC_OK;
+    if (eCode == EC_OK)
+    {
+        RemoteHandler* remoteHandler = RemotesManipulator::getInstance()->getRemoteHandler(buff[0]);
+        if (remoteHandler != NULL)
+        {
+            size_t metaInfSize = 0;
+            size_t imageSize = 0;
+            byte* buffMetaInf = NULL;
+            byte* buffImage = NULL;
+            if (eCode == EC_OK)
+            {
+
+                eCode = ((tempECode = remoteHandler->getRemoteMetaBytes(&buffMetaInf, &metaInfSize)) == EC_OK) ? eCode : tempECode;
+                eCode = ((tempECode = remoteHandler->getRemoteImageBytes(&buffImage, &imageSize)) == EC_OK) ? eCode : tempECode;
+                if (eCode == EC_OK)
+                {
+                    Helpers::intToBigEndienBytes(metaInfSize, numberBuff);
+                    Helpers::intToBigEndienBytes(imageSize, numberBuff + 4);
+
+                    eCode = ((tempECode = streamHandler->write(eCode)) == EC_OK) ? eCode : tempECode;
+                    eCode = ((tempECode = streamHandler->write(numberBuff, sizeof(numberBuff))) == EC_OK) ? eCode : tempECode;
+                    eCode = ((tempECode = streamHandler->write(buffMetaInf, metaInfSize)) == EC_OK) ? eCode : tempECode;
+                    eCode = ((tempECode = streamHandler->write(buffImage, imageSize)) == EC_OK) ? eCode : tempECode;
+
+                    remoteHandler->releaseMeta();
+                    remoteHandler->releaseImage();
+                    return eCode;
+                }
+                remoteHandler->releaseMeta();
+                remoteHandler->releaseImage();
+            }
+        } else
+        {
+            eCode = EC_REMOTE_NOT_FOUND;
+        }
+    }
+    streamHandler->write(eCode);
+    return eCode;
 }

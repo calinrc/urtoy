@@ -27,7 +27,21 @@ public:
 
     virtual ErrorCode init();
 
-    virtual ErrorCode getRemoteCommanBytes(int commandId, char** bytesBuff, size_t* bytes_Size);
+    virtual ErrorCode getRemoteCommanBytes(int commandId, byte** bytesBuff, size_t* bytes_Size);
+
+    virtual ErrorCode storeRemoteCommandBytes(int commandId, byte* bytesBuff, size_t bytes_Size);
+
+    virtual ErrorCode storeRemoteMetaBytes(byte* bytesBuff, size_t bytes_Size);
+
+    virtual ErrorCode storeRemoteImageBytes(byte* bytesBuff, size_t bytes_Size);
+
+    virtual ErrorCode getRemoteMetaBytes(byte** bytesBuff, size_t* bytes_Size);
+
+    virtual ErrorCode getRemoteImageBytes(byte** bytesBuff, size_t* bytes_Size);
+
+    virtual ErrorCode releaseMeta();
+
+    virtual ErrorCode releaseImage();
 
     virtual void release();
 

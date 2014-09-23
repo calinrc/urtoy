@@ -11,6 +11,11 @@
  ********************************************************************************************************************* */
 
 #include "commands/RecordSignal.h"
+#include "remotes/RemotesManipulator.h"
+#include "remotes/RemoteHandler.h"
+#include "devices/DeviceHandlerFactory.h"
+#include "devices/DeviceHandler.h"
+#include "devices/DeviceInitInfo.h"
 
 RecordSignal::RecordSignal()
 {
@@ -23,6 +28,30 @@ RecordSignal::~RecordSignal()
 
 ErrorCode RecordSignal::execute(TRANSPORTER_HANDLER streamHandler)
 {
-    return EC_NOT_IMPLEMENTED;
+    byte buff[2]; // first byte identifies the remote id and second remote command id
+    ErrorCode eCode = streamHandler->read(buff, sizeof(buff));
+    if (eCode == EC_OK)
+    {
+
+        DeviceHandler* dh = DeviceHandlerFactory::getInstance()->getHandler(Config::getInstance()->getDeviceInitInfo());
+        byte* buffLocation = NULL;
+        size_t buffSize = 0;
+        DeviceErrorCode readECode = dh->read(&buffLocation, &buffSize);
+        if (readECode == DEC_OK)
+        {
+            RemoteHandler* remoteHandler = RemotesManipulator::getInstance()->getRemoteHandler(buff[0]);
+            if (remoteHandler != NULL)
+            {
+                eCode = remoteHandler->storeRemoteCommandBytes(buff[1],buffLocation, buffSize);
+            } else
+            {
+                eCode = EC_REMOTE_NOT_FOUND;
+            }
+        }else{
+            eCode = EC_DEVICE_COMMAND_FAIL;
+        }
+    }
+    streamHandler->write(eCode);
+    return eCode;
 }
 

@@ -35,8 +35,8 @@ ErrorCode SendRemoteCommand::execute(TRANSPORTER_HANDLER streamHandler)
     {
         RemoteHandler* remoteHandler = RemotesManipulator::getInstance()->getRemoteHandler(buff[0]);
         if (remoteHandler != NULL){
-            char* buffLocation;
-            size_t buffSize;
+            char* buffLocation= NULL;
+            size_t buffSize = 0;
             eCode = remoteHandler->getRemoteCommanBytes(buff[1], &buffLocation, &buffSize);
             if (eCode == EC_OK){
                 DeviceHandler* dh = DeviceHandlerFactory::getInstance()->getHandler(Config::getInstance()->getDeviceInitInfo());

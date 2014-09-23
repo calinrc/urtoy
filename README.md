@@ -31,9 +31,9 @@ Commands:
 
 
 ### Login 
-		* Client - Sends command id
-		* Server - Server Sends Nonce (String value no more than 20 chars  )
-		* Client - Response UTF-8 string  ---- (username + ':' +string( (int) charCount(password+nonce))  - This might be replaced with md5 in he future 
+		* Client - Sends command id + protocol identifier ("urtoy" 5 bytes chars) + 2 bytes protocol version (minor , major)
+		* Server - Server Sends status + Nonce (String value no more than 20 chars  )
+		* Client - Response UTF-8 string  ---- (username + ':' +string( (int) charCount(password+nonce))  - This might be replaced with md5 in the future 
 		* Server - Response status ok or close connection (one bytes)
 
 ### Logout
@@ -57,11 +57,11 @@ Commands:
 		* Server records the signal , save it and respond with status
 
 ### SaveRemoteMetaInf
-		* Client sends command id + (int) length of region file bytes + (int) length of the picture + region bytes + pictue bytes
+		* Client sends command id + remoteId (byte) + (int) length of region file bytes + (int) length of the picture + region bytes + pictue bytes
 		* Serve responds status  
 
 ### LoadRemoteMetaInf
-		* Client sends command id + remoteId (8 bytes long value)
+		* Client sends command id + remoteId byte
 		* Server responds status + (int) length of region file bytes + (int) length of the picture + region bytes + pictue bytes
 
 		

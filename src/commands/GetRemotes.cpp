@@ -34,24 +34,24 @@ GetRemotes::~GetRemotes()
 
 ErrorCode GetRemotes::execute(TRANSPORTER_HANDLER streamHandler)
 {
-    char length = 0;
-    map<char, std::string> remotesMap;
+    byte length = 0;
+    map<byte, std::string> remotesMap;
     RemotesManipulator* rm = RemotesManipulator::getInstance();
     rm->loadRemotes(Config::getInstance()->getPathResolver()->resolve(REMOTES_FILE));
     remotesMap = rm->getRemotesIdNameMap();
     length = remotesMap.size();
     streamHandler->write(EC_OK);
     streamHandler->write(length);
-    char number[4];
-    for (map<char, string>::iterator mapIt = remotesMap.begin(); mapIt != remotesMap.end(); mapIt++)
+    byte numberBytes[4];
+    for (map<byte, string>::iterator mapIt = remotesMap.begin(); mapIt != remotesMap.end(); mapIt++)
     {
         char remoteId = mapIt->first;
         string remoteName = mapIt->second;
         streamHandler->write(remoteId);
-        long remoteSizeName = remoteName.size();
-        Helpers::intToBigEndienBytes(remoteSizeName, number);
-        streamHandler->write(number, sizeof(number));
-        streamHandler->write(remoteName.c_str(), remoteSizeName);
+        long remoteNameSize = remoteName.size();
+        Helpers::intToBigEndienBytes(remoteNameSize, numberBytes);
+        streamHandler->write(numberBytes, sizeof(numberBytes));
+        streamHandler->write(remoteName.c_str(), remoteNameSize);
     }
     return EC_OK;
 }
